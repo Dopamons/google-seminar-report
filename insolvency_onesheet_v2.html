@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>개인회생·파산 분야 마케팅 인사이트 — 로케팅</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+:root {
+  --navy:   #0B1E3F;
+  --blue:   #1E5FA8;
+  --gold:   #C8A84B;
+  --cream:  #F7F3EC;
+  --gl:     #EEF0F4;
+  --gray:   #8A9BB0;
+  --text:   #2D3748;
+  --green:  #10B981;
+  --red:    #EF4444;
+  --amber:  #D97706;
+
+  --page-w: 210mm;
+  --page-h: 297mm;
+  --mg:     18mm;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #C8C8C8;
+  color: var(--text);
+  font-size: 9pt;
+  line-height: 1.7;
+}
+
+/* ── 페이지 ── */
+.page {
+  width: var(--page-w);
+  min-height: var(--page-h);
+  margin: 12mm auto;
+  background: #fff;
+  position: relative;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+  padding: var(--mg);
+  padding-bottom: 16mm;
+}
+
+.page.cover { padding: 0; overflow: hidden; }
+
+@page { size: A4; margin: 0; }
+@media print {
+  body { background: #fff; }
+  .page { margin: 0; box-shadow: none; page-break-after: always; }
+  .page:last-child { page-break-after: avoid; }
+}
+
+/* ── 표지 내부 ── */
+.cover-inner {
+  width: 100%;
+  height: var(--page-h);
+  background: var(--navy);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--mg);
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 80mm; height: 80mm;
+  background: linear-gradient(135deg, rgba(200,168,75,0.1) 0%, transparent 60%);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+.cover-deco-h {
+  position: absolute;
+  top: 22mm; left: 0; right: 0;
+  height: 0.4mm;
+  background: linear-gradient(to right, transparent, rgba(200,168,75,0.35), transparent);
+}
+
+.cover-deco-h2 {
+  position: absolute;
+  bottom: 22mm; left: 0; right: 0;
+  height: 0.4mm;
+  background: linear-gradient(to right, transparent, rgba(200,168,75,0.35), transparent);
+}
+
+/* 표지 상단 */
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 6mm;
+}
+
+.cover-badge {
+  font-size: 7pt;
+  letter-spacing: 2px;
+  color: var(--gold);
+  font-weight: 600;
+  border-bottom: 0.4mm solid rgba(200,168,75,0.4);
+  padding-bottom: 2mm;
+}
+
+.cover-src {
+  font-size: 6.5pt;
+  color: rgba(255,255,255,0.4);
+  text-align: right;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+}
+
+/* 표지 중앙 */
+.cover-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10mm 0;
+}
+
+.cover-eyebrow {
+  font-size: 7.5pt;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 1px;
+  margin-bottom: 5mm;
+}
+
+.cover-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 30pt;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 6mm;
+}
+
+.cover-title em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+.cover-divider {
+  width: 14mm;
+  height: 0.5mm;
+  background: var(--gold);
+  margin-bottom: 6mm;
+  border-radius: 1mm;
+}
+
+.cover-desc {
+  font-size: 9.5pt;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8;
+  max-width: 120mm;
+}
+
+.cover-desc strong { color: rgba(255,255,255,0.85); }
+
+/* 표지 하단 */
+.cover-bottom {
+  padding-bottom: 6mm;
+}
+
+.cover-meta-line {
+  height: 0.3mm;
+  background: rgba(200,168,75,0.25);
+  margin-bottom: 5mm;
+}
+
+.cover-metas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5mm;
+}
+
+.cover-meta {
+  border-left: 0.5mm solid rgba(200,168,75,0.4);
+  padding-left: 3mm;
+}
+
+.cover-meta .ml {
+  font-size: 6pt;
+  letter-spacing: 2px;
+  color: rgba(200,168,75,0.7);
+  text-transform: uppercase;
+  margin-bottom: 1.5mm;
+}
+
+.cover-meta .mv {
+  font-size: 8pt;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+}
+
+.cover-footer-bar {
+  margin-top: 6mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cover-brand {
+  font-size: 8pt;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.cover-pg {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 9pt;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ── 본문 공통 ── */
+.ch-bar {
+  background: var(--navy);
+  margin: calc(-1 * var(--mg));
+  margin-bottom: 7mm;
+  padding: 3mm var(--mg);
+  display: flex;
+  align-items: center;
+  gap: 4mm;
+}
+
+.ch-bar .ch-n {
+  font-size: 6.5pt;
+  color: var(--gold);
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.ch-bar .ch-t {
+  font-size: 8pt;
+  color: rgba(255,255,255,0.7);
+}
+
+.section-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16pt;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1.5mm;
+  line-height: 1.3;
+}
+
+.section-lead {
+  font-size: 8.5pt;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 6mm;
+}
+
+.section-lead strong { color: var(--navy); }
+
+.sec-label {
+  font-size: 6.5pt;
+  letter-spacing: 2.5px;
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 3mm;
+  padding-bottom: 2mm;
+  border-bottom: 0.3mm solid var(--gl);
+}
+
+/* 카드 */
+.card {
+  border: 0.3mm solid var(--gl);
+  border-radius: 2.5mm;
+  padding: 5mm;
+  margin-bottom: 5mm;
+}
+
+.card-title {
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 3.5mm;
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+}
+
+.card-title .dot {
+  width: 2mm; height: 2mm;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* 인사이트 카드 */
+.insight-card {
+  background: var(--navy);
+  border-radius: 2.5mm;
+  padding: 5mm 6mm;
+  margin-bottom: 5mm;
+  border-left: 1.2mm solid var(--gold);
+}
+
+.insight-card .ic-label {
+  font-size: 6.5pt;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-bottom: 2mm;
+}
+
+.insight-card .ic-body {
+  font-size: 8.5pt;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.75;
+}
+
+.insight-card .ic-body strong { color: #fff; }
+
+/* KPI */
+.kpi-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4mm;
+  margin-bottom: 5mm;
+}
+
+.kpi-box {
+  background: var(--cream);
+  border-radius: 2.5mm;
+  padding: 5mm 4mm;
+  border: 0.3mm solid rgba(200,168,75,0.2);
+}
+
+.kpi-num {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 24pt;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 2mm;
+}
+
+.kpi-num .unit { font-size: 13pt; color: var(--gold); }
+
+.kpi-desc {
+  font-size: 8pt;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+.kpi-desc strong { color: var(--navy); }
+
+/* 단계 카드 */
+.stage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4mm;
+  margin-bottom: 5mm;
+}
+
+.stage-card {
+  border-radius: 2.5mm;
+  overflow: hidden;
+  border: 0.3mm solid var(--gl);
+}
+
+.stage-card.highlighted {
+  border: 0.5mm solid var(--gold);
+}
+
+.stage-hd {
+  padding: 3.5mm 4mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.stage-hd.info { background: #EFF6FF; }
+.stage-hd.comp { background: #FFFBEB; }
+.stage-hd.deci { background: #FEF2F2; }
+
+.stage-step {
+  font-size: 6pt;
+  letter-spacing: 1px;
+  margin-bottom: 1mm;
+  font-weight: 600;
+}
+
+.stage-step.info { color: var(--blue); }
+.stage-step.comp { color: var(--amber); }
+.stage-step.deci { color: var(--red); }
+
+.stage-name {
+  font-size: 9pt;
+  font-weight: 700;
+}
+
+.stage-name.info { color: var(--blue); }
+.stage-name.comp { color: var(--amber); }
+.stage-name.deci { color: var(--red); }
+
+.stage-yoy {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18pt;
+  font-weight: 900;
+  line-height: 1;
+  text-align: right;
+}
+
+.stage-yoy.info { color: var(--blue); }
+.stage-yoy.comp { color: var(--amber); }
+.stage-yoy.deci { color: var(--red); }
+
+.stage-yoy-lbl {
+  font-size: 6.5pt;
+  color: var(--gray);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  display: block;
+  text-align: right;
+}
+
+.stage-bd {
+  padding: 4mm;
+  background: #fff;
+}
+
+.stage-kw-label {
+  font-size: 7pt;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1.5mm;
+}
+
+.stage-kws {
+  font-size: 7.5pt;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 3mm;
+  padding-bottom: 3mm;
+  border-bottom: 0.3mm solid var(--gl);
+}
+
+.stage-insight-label {
+  font-size: 7pt;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1mm;
+}
+
+.stage-insight-body {
+  font-size: 8pt;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.stage-insight-body b { color: var(--navy); }
+
+.core-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  font-size: 6pt;
+  font-weight: 700;
+  padding: 0.8mm 2.5mm;
+  border-radius: 1mm;
+  letter-spacing: 0.5px;
+  margin-bottom: 2mm;
+}
+
+/* 비율 바 */
+.ratio-wrap {
+  margin-bottom: 4mm;
+}
+
+.ratio-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2mm;
+  font-size: 7.5pt;
+}
+
+.ratio-bar {
+  display: flex;
+  height: 4mm;
+  border-radius: 1mm;
+  overflow: hidden;
+  gap: 0.5mm;
+  margin-bottom: 2mm;
+}
+
+.rb-info { background: var(--blue); opacity: 0.75; }
+.rb-comp { background: var(--amber); }
+.rb-deci { background: var(--red); opacity: 0.75; }
+
+.ratio-legend {
+  display: flex;
+  gap: 6mm;
+}
+
+.ratio-legend span {
+  font-size: 7.5pt;
+  display: flex;
+  align-items: center;
+  gap: 1.5mm;
+}
+
+.legend-dot {
+  width: 2.5mm; height: 2.5mm;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* 하이라이트 박스 */
+.highlight {
+  background: #FFFBEB;
+  border: 0.3mm solid rgba(212,169,71,0.4);
+  border-left: 1mm solid var(--gold);
+  border-radius: 2mm;
+  padding: 3.5mm 4mm;
+  font-size: 8.5pt;
+  line-height: 1.75;
+  color: var(--navy);
+  margin-bottom: 5mm;
+}
+
+.highlight strong { color: var(--navy); }
+
+/* 유튜브 카드 그리드 */
+.yt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4mm;
+  margin-bottom: 5mm;
+}
+
+.yt-card {
+  border-radius: 2.5mm;
+  padding: 4.5mm 5mm;
+}
+
+.yt-card.primary { background: var(--navy); }
+.yt-card.secondary { background: var(--cream); border: 0.3mm solid var(--gl); }
+
+.yt-tag {
+  display: inline-block;
+  font-size: 6pt;
+  font-weight: 700;
+  padding: 0.8mm 2.5mm;
+  border-radius: 1mm;
+  margin-bottom: 2mm;
+  letter-spacing: 0.5px;
+}
+
+.yt-card.primary .yt-tag { background: rgba(200,168,75,0.2); color: var(--gold); }
+.yt-card.secondary .yt-tag { background: var(--gl); color: var(--navy); }
+
+.yt-card-title {
+  font-size: 9.5pt;
+  font-weight: 700;
+  margin-bottom: 2mm;
+  line-height: 1.3;
+}
+
+.yt-card.primary .yt-card-title { color: #fff; }
+.yt-card.secondary .yt-card-title { color: var(--navy); }
+
+.yt-card-body {
+  font-size: 8pt;
+  line-height: 1.72;
+}
+
+.yt-card.primary .yt-card-body { color: rgba(255,255,255,0.7); }
+.yt-card.secondary .yt-card-body { color: var(--gray); }
+
+/* 액션 리스트 */
+.action-list { list-style: none; }
+
+.action-list li {
+  display: flex;
+  gap: 4mm;
+  padding: 4mm 0;
+  border-bottom: 0.3mm solid var(--gl);
+  align-items: flex-start;
+}
+
+.action-list li:last-child { border-bottom: none; }
+
+.action-num {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16pt;
+  font-weight: 900;
+  color: rgba(200,168,75,0.25);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 8mm;
+}
+
+.action-content {}
+
+.action-title {
+  font-size: 9pt;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1.5mm;
+}
+
+.action-desc {
+  font-size: 8pt;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+.action-desc b { color: var(--navy); }
+
+/* 푸터 */
+.pg-footer {
+  position: absolute;
+  bottom: 7mm; left: var(--mg);
+  font-size: 7pt;
+  color: var(--gl);
+  letter-spacing: 0.5px;
+}
+
+.pg-num {
+  position: absolute;
+  bottom: 7mm; right: var(--mg);
+  font-size: 7pt;
+  color: var(--gray);
+  font-family: 'Noto Serif KR', serif;
+}
+
+.divider {
+  height: 0.3mm;
+  background: var(--gl);
+  margin: 5mm 0;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════ PAGE 1 — 표지 ══════════ -->
+<div class="page cover">
+  <div class="cover-inner">
+    <div class="cover-deco-h"></div>
+    <div class="cover-deco-h2"></div>
+
+    <!-- 상단 -->
+    <div class="cover-top">
+      <div style="display:flex;flex-direction:column;gap:2mm;">
+        <div class="cover-badge">개인회생·파산 분야 &nbsp;·&nbsp; Insight Brief</div>
+        <div style="display:inline-flex;align-items:center;gap:2mm;background:rgba(200,168,75,0.12);border:0.4mm solid rgba(200,168,75,0.35);border-radius:1.5mm;padding:1.5mm 3.5mm;width:fit-content;">
+          <span style="font-size:5.5pt;letter-spacing:1.5px;color:rgba(200,168,75,0.8);font-weight:600;">SUMMARY BRIEF</span>
+          <span style="width:0.3mm;height:3mm;background:rgba(200,168,75,0.4);"></span>
+          <span style="font-size:5.5pt;color:rgba(255,255,255,0.5);letter-spacing:0.5px;">구글 법률광고 세미나 보고서 요약본</span>
+        </div>
+      </div>
+      <div class="cover-src">출처: Google Korea 법무법인 세미나<br>구글 내부 데이터 기반 · 2026</div>
+    </div>
+
+    <!-- 중앙 -->
+    <div class="cover-center">
+      <div class="cover-eyebrow">Google Korea · 구글 내부 데이터 · 개인회생·파산 분야</div>
+      <div class="cover-title">
+        개인회생 분야<br>
+        <em>Google 광고</em><br>
+        인사이트 브리프
+      </div>
+      <div class="cover-divider"></div>
+      <div class="cover-desc">
+        구글 내부 데이터 기반 예비 의뢰인 탐색 심리 분석,<br>
+        3단계 키워드 증가 분포, 유튜브 콘텐츠 전략,<br>
+        <strong>즉시 적용 가능한 마케팅 액션 포인트 수록.</strong>
+      </div>
+    </div>
+
+    <!-- 하단 -->
+    <div class="cover-bottom">
+      <div class="cover-meta-line"></div>
+      <div class="cover-metas">
+        <div class="cover-meta">
+          <div class="ml">데이터 출처</div>
+          <div class="mv">Google Korea 내부 데이터<br>법무법인 마케팅 세미나 발표</div>
+        </div>
+        <div class="cover-meta">
+          <div class="ml">분석 대상</div>
+          <div class="mv">개인회생 · 개인파산<br>채무 조정 법률 서비스</div>
+        </div>
+        <div class="cover-meta">
+          <div class="ml">작성</div>
+          <div class="mv">로케팅 김래균<br>디지털 마케팅 에이전시</div>
+        </div>
+      </div>
+      <div class="cover-footer-bar">
+        <div class="cover-brand">ROCKETING · 로케팅</div>
+        <div class="cover-pg">01</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PAGE 2 — 데이터 + 키워드 분석 ══════════ -->
+<div class="page">
+  <div class="ch-bar">
+    <span class="ch-n">Part 01</span>
+    <span class="ch-t">시장 데이터 & 예비 의뢰인 탐색 심리 분석</span>
+  </div>
+
+  <div class="section-title">개인회생 분야에서 일어나고 있는 일</div>
+  <div class="section-lead">구글 내부 데이터 기반으로 개인회생·파산 분야 예비 의뢰인이 어떤 키워드를 얼마나 빠르게 검색하고 있는지, 그리고 어느 단계에서 가장 많이 성장하고 있는지를 분석한다.</div>
+
+  <!-- 핵심 수치 -->
+  <div class="sec-label">핵심 수치 — 구글 내부 데이터</div>
+  <div class="kpi-row">
+    <div class="kpi-box">
+      <div class="kpi-num">+1,064<span class="unit">%</span></div>
+      <div class="kpi-desc"><strong>'빚 탕감 대상자 확인'</strong> 키워드 YoY 증가율.<br>자격 검증 수요가 폭발적으로 늘고 있다.</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-num">+548<span class="unit">%</span></div>
+      <div class="kpi-desc"><strong>'개인파산 신청 비용'</strong> 키워드 YoY 증가율.<br>비용 탐색 단계 의뢰인이 급격히 증가 중.</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-num">278<span class="unit">%</span></div>
+      <div class="kpi-desc">법률 서비스 유튜브 조회수 <strong>3년간 증가율.</strong><br>교육 분야(+49%) 대비 5.7배 빠른 성장.</div>
+    </div>
+  </div>
+
+  <div class="insight-card">
+    <div class="ic-label">핵심 인사이트</div>
+    <div class="ic-body">개인회생 분야 예비 의뢰인은 <strong>"나도 해당이 되는지"</strong>를 확인한 뒤, <strong>"어디에 맡겨야 가장 잘 해줄지"</strong>를 오랫동안 비교한다. 이 비교 단계에서 검색량 성장이 가장 폭발적이다. 검색광고만으로는 이 수요를 다 잡을 수 없고, <strong>후기·사례·유튜브</strong>가 수임을 결정하는 분야다.</div>
+  </div>
+
+  <!-- 3단계 비율 바 -->
+  <div class="sec-label">3단계별 키워드 증가 분포 — 개인회생 분야</div>
+
+  <div class="ratio-wrap">
+    <div class="ratio-label-row">
+      <span style="font-size:7.5pt;color:var(--gray);">정보탐색 · 비교 · 결정 단계별 YoY 키워드 증가 비중</span>
+      <span style="font-size:8pt;font-weight:700;color:var(--amber);">비교 단계가 전체의 66%를 차지</span>
+    </div>
+    <div class="ratio-bar">
+      <div class="rb-info" style="width:20%;"></div>
+      <div class="rb-comp" style="width:66%;"></div>
+      <div class="rb-deci" style="width:14%;"></div>
+    </div>
+    <div class="ratio-legend">
+      <span><div class="legend-dot" style="background:var(--blue);opacity:0.75;"></div>정보 탐색 +20%</span>
+      <span><div class="legend-dot" style="background:var(--amber);"></div>비교 +66%</span>
+      <span><div class="legend-dot" style="background:var(--red);opacity:0.75;"></div>결정 +14%</span>
+    </div>
+  </div>
+
+  <!-- 단계 카드 3종 -->
+  <div class="stage-grid">
+
+    <!-- 정보 탐색 -->
+    <div class="stage-card">
+      <div class="stage-hd info">
+        <div>
+          <div class="stage-step info">STEP 01</div>
+          <div class="stage-name info">정보 탐색 단계</div>
+        </div>
+        <div>
+          <div class="stage-yoy info">+20<span style="font-size:11pt;">%</span></div>
+          <div class="stage-yoy-lbl">YoY 증가</div>
+        </div>
+      </div>
+      <div class="stage-bd">
+        <div class="stage-kw-label">주요 키워드</div>
+        <div class="stage-kws">
+          빚 탕감 대상자 확인 · 파산 신청 자격 · 개인회생 준비 서류 · 개인 워크아웃 · 개인회생 계산기
+        </div>
+        <div class="stage-insight-label">탐색 심리 & 액션</div>
+        <div class="stage-insight-body">
+          "나도 해당이 되나?" 자격 요건 확인이 최우선. 아직 결정하지 않은 상태.<br>
+          <b>→ 자격 진단 콘텐츠, AI 자가진단 도구가 효과적</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- 비교 ★ -->
+    <div class="stage-card highlighted">
+      <div class="stage-hd comp">
+        <div>
+          <div class="stage-step comp">STEP 02</div>
+          <div class="stage-name comp">비교 단계</div>
+          <div class="core-tag">★ 핵심 공략 단계</div>
+        </div>
+        <div>
+          <div class="stage-yoy comp">+66<span style="font-size:11pt;">%</span></div>
+          <div class="stage-yoy-lbl">YoY 증가</div>
+        </div>
+      </div>
+      <div class="stage-bd">
+        <div class="stage-kw-label">주요 키워드</div>
+        <div class="stage-kws">
+          개인회생 단점 · 개인회생 후기 · 개인회생 변호사 비용 디시 · 토토 개인회생 후기 디시 · 개인회생 신청 불이익
+        </div>
+        <div class="stage-insight-label">탐색 심리 & 액션</div>
+        <div class="stage-insight-body">
+          "어디에 맡겨야 가장 잘 해줄까?" 타인 후기 교차 검증, 부작용 사전 탐색.<br>
+          <b>→ 승소 사례 콘텐츠, 의뢰인 후기, 유튜브 채널이 결정적</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- 결정 -->
+    <div class="stage-card">
+      <div class="stage-hd deci">
+        <div>
+          <div class="stage-step deci">STEP 03</div>
+          <div class="stage-name deci">결정 단계</div>
+        </div>
+        <div>
+          <div class="stage-yoy deci">+14<span style="font-size:11pt;">%</span></div>
+          <div class="stage-yoy-lbl">YoY 증가</div>
+        </div>
+      </div>
+      <div class="stage-bd">
+        <div class="stage-kw-label">주요 키워드</div>
+        <div class="stage-kws">
+          개인회생 비용 · 개인회생 신청 방법 · 개인회생 변호사 선임 · 개인파산 신청 비용
+        </div>
+        <div class="stage-insight-label">탐색 심리 & 액션</div>
+        <div class="stage-insight-body">
+          결정을 굳히고 구체적 절차와 비용을 확인하는 단계.<br>
+          <b>→ 즉각 상담 CTA, 모바일 최적화 랜딩이 핵심</b>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="highlight">
+    <strong>⚡ 핵심 시사점:</strong> 개인회생 분야는 비교 단계(+66%)가 압도적으로 성장하고 있다. 의뢰인들이 "어디에 맡길지"를 가장 오래 고민한다는 뜻이다. 검색광고만 집행하고 있다면 이 66%의 수요를 절반도 잡지 못하고 있을 가능성이 높다.
+  </div>
+
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+  <div class="pg-num">2</div>
+</div>
+
+<!-- ══════════ PAGE 3 — 유튜브 + 액션 ══════════ -->
+<div class="page">
+  <div class="ch-bar">
+    <span class="ch-n">Part 02</span>
+    <span class="ch-t">유튜브 전략 & 지금 당장 점검해야 할 것들</span>
+  </div>
+
+  <div class="section-title">비교 단계 의뢰인을 잡는 유튜브 전략</div>
+  <div class="section-lead">개인회생 분야에서 비교 단계 의뢰인은 유튜브에서 다른 법인과 우리를 비교한다. 조회당 평균 시청 시간 2.65분 — 이 시간 동안 의뢰인의 마음이 결정된다.</div>
+
+  <!-- 유튜브 카드 -->
+  <div class="sec-label">개인회생 분야 유튜브 콘텐츠 우선순위</div>
+  <div class="yt-grid">
+    <div class="yt-card primary">
+      <div class="yt-tag">★ 최우선</div>
+      <div class="yt-card-title">사례형 콘텐츠</div>
+      <div class="yt-card-body">의뢰인의 절망 → 법인의 개입 → 결과까지의 서사. "나와 같은 사람이 성공했다"는 대리 경험이 비교 단계 의뢰인의 확신을 만든다. 실제 수임 후기 기반 스토리가 핵심. 구독자와 조회수보다 중요한 건 서사의 구체성이다.</div>
+    </div>
+    <div class="yt-card primary">
+      <div class="yt-tag">★ 최우선</div>
+      <div class="yt-card-title">위기 조성형 콘텐츠</div>
+      <div class="yt-card-body">"개인회생 신청을 미루면 생기는 일", "혼자 신청했다가 기각된 사례". 골든타임 경고로 즉각 행동 유도. 막연한 공포가 아닌 실증적 데이터 기반 경고여야 신뢰가 생긴다.</div>
+    </div>
+    <div class="yt-card secondary">
+      <div class="yt-tag">보조</div>
+      <div class="yt-card-title">정보 전달형 콘텐츠</div>
+      <div class="yt-card-body">자격 요건·준비 서류·변제 기간 계산 등 실용 정보. 정보 탐색 단계 유입을 확보하고 채널 구독으로 연결하는 입구 역할. 검색 유입에 효과적이다.</div>
+    </div>
+    <div class="yt-card secondary">
+      <div class="yt-tag">보조</div>
+      <div class="yt-card-title">커뮤니티 탭 운영</div>
+      <div class="yt-card-body">영상 제작 없이도 구독자 핸드폰에 법인 이름을 노출하는 가장 효율적인 수단. 성공 사례 업데이트와 상담 안내를 주 1~2회 게시하는 것만으로도 노출 점유율을 높일 수 있다.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 즉시 액션 -->
+  <div class="sec-label">지금 바로 점검해야 할 3가지</div>
+
+  <div class="card" style="margin-bottom:0;">
+    <ul class="action-list">
+
+      <li>
+        <div class="action-num">01</div>
+        <div class="action-content">
+          <div class="action-title">비교 단계 키워드가 현재 캠페인에 포함되어 있는가</div>
+          <div class="action-desc">
+            '개인회생 후기', '개인회생 변호사 비용', '개인회생 단점' 등 <b>비교 단계 키워드</b>가 현재 광고 캠페인에 포함되어 있는지 확인. 결정 단계 키워드에만 집중하면 +66% 성장하는 비교 수요를 그냥 흘려보내는 것이다. 구글 담당 매니저에게 "비교 단계 키워드군이 잘 준비되어 있는지 점검해달라"고 요청하는 것이 가장 빠르다.
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="action-num">02</div>
+        <div class="action-content">
+          <div class="action-title">유튜브 채널에 사례형 영상이 있는가</div>
+          <div class="action-desc">
+            채널 보유율은 88%지만 <b>수임 성공 서사를 담은 사례형 콘텐츠</b>를 갖춘 법인은 소수다. 비교 단계 의뢰인이 유튜브에서 가장 오래 보는 콘텐츠가 바로 사례형이다. 영상 1편이 검색광고 수십 번 클릭보다 강한 설득력을 가질 수 있다. 채널은 있지만 사례형이 없다면 지금 당장 기획해야 한다.
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="action-num">03</div>
+        <div class="action-content">
+          <div class="action-title">랜딩 페이지에 후기와 실적 수치가 보이는가</div>
+          <div class="action-desc">
+            광고를 클릭하고 들어온 비교 단계 의뢰인이 가장 먼저 찾는 것은 <b>다른 사람의 후기와 실적 수치</b>다. 히어로 영역 또는 첫 스크롤 안에 승소율·처리 건수·의뢰인 후기가 수치로 보여야 이탈을 막을 수 있다. "전문가 팀이 함께합니다" 같은 추상적 표현은 비교 단계 의뢰인에게 작동하지 않는다.
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- 마지막 -->
+  <div style="margin-top:5mm;display:flex;align-items:center;gap:4mm;background:var(--navy);border-radius:2.5mm;padding:4.5mm 5mm;">
+    <div style="width:1mm;height:12mm;background:var(--gold);border-radius:0.5mm;flex-shrink:0;"></div>
+    <div style="font-size:8.5pt;color:rgba(255,255,255,0.75);line-height:1.7;">
+      개인회생 분야는 <strong style="color:#fff;">비교 단계에서 수임이 결정된다.</strong> 검색광고로 데려온 의뢰인이 결국 다른 법인으로 가는 이유는 광고가 나빠서가 아니라, <strong style="color:#fff;">비교 단계를 설득할 자산(후기·사례·유튜브)이 없기 때문이다.</strong>
+    </div>
+  </div>
+
+  <!-- 하단 제작 정보 -->
+  <div style="margin-top:5mm;display:flex;justify-content:space-between;align-items:center;padding-top:4mm;border-top:0.3mm solid var(--gl);">
+    <div style="font-size:7.5pt;font-weight:700;color:var(--navy);letter-spacing:1px;">ROCKETING · 로케팅 · 디지털 마케팅</div>
+    <div style="font-size:6.5pt;color:var(--gray);text-align:right;line-height:1.7;">출처: Google Korea 법무법인 세미나 발표 내용 · 구글 내부 데이터<br>본 자료의 무단 복제 및 배포를 금합니다</div>
+  </div>
+
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+  <div class="pg-num">3</div>
+</div>
+
+</body>
+</html>
