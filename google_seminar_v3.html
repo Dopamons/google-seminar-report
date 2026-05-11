@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>구글 법률광고 세미나 인사이트 보고서</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+/* ── A4 기본 설정 ─────────────────────────── */
+:root {
+  --navy:    #0B1E3F;
+  --navy-mid:#1A3460;
+  --blue:    #1E5FA8;
+  --gold:    #C8A84B;
+  --gold-lt: #E2C97E;
+  --cream:   #F7F3EC;
+  --gl:      #EEF0F4;
+  --gray:    #8A9BB0;
+  --text:    #2D3748;
+  --green:   #10B981;
+  --red:     #EF4444;
+
+  --page-w:  210mm;
+  --page-h:  297mm;
+  --margin:  18mm;
+  --content: calc(var(--page-w) - var(--margin) * 2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #D0D0D0;
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 9pt;
+}
+
+/* ── 페이지 컨테이너 ───────────────────────── */
+.page {
+  width: var(--page-w);
+  min-height: var(--page-h);
+  margin: 12mm auto;
+  background: #fff;
+  padding: var(--margin);
+  position: relative;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+
+/* 표지는 패딩 없이 꽉 채움 */
+.page.cover-page {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ── 인쇄 설정 ────────────────────────────── */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  body { background: #fff; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: avoid; }
+}
+
+/* ══════════════════════════════════════════
+   표지
+══════════════════════════════════════════ */
+/* ── 표지 레이아웃 ────────────────────────── */
+.cover-inner {
+  width: 100%;
+  height: var(--page-h);
+  background: var(--navy);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 상단 골드 기하 장식 */
+.cover-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 72mm; height: 72mm;
+  background: linear-gradient(135deg, rgba(200,168,75,0.22) 0%, transparent 65%);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+/* 하단 블루 글로우 */
+.cover-inner::after {
+  content: '';
+  position: absolute;
+  bottom: -20mm; left: -20mm;
+  width: 80mm; height: 80mm;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(30,95,168,0.25) 0%, transparent 70%);
+}
+
+/* 좌측 골드 세로선 */
+.cover-deco-line {
+  position: absolute;
+  top: 0; left: 18mm;
+  width: 0.4mm; height: 100%;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(200,168,75,0.5) 20%,
+    rgba(200,168,75,0.5) 80%,
+    transparent 100%);
+}
+
+/* 우측 세로선 */
+.cover-deco-line2 {
+  position: absolute;
+  top: 0; right: 18mm;
+  width: 0.4mm; height: 100%;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(200,168,75,0.18) 30%,
+    rgba(200,168,75,0.18) 70%,
+    transparent 100%);
+}
+
+/* 상단 골드 수평 라인 */
+.cover-top-bar {
+  position: absolute;
+  top: 18mm; left: 0; right: 0;
+  height: 0.4mm;
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(200,168,75,0.4) 15%,
+    rgba(200,168,75,0.4) 85%,
+    transparent 100%);
+}
+
+/* 하단 골드 수평 라인 */
+.cover-bot-bar {
+  position: absolute;
+  bottom: 18mm; left: 0; right: 0;
+  height: 0.4mm;
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(200,168,75,0.4) 15%,
+    rgba(200,168,75,0.4) 85%,
+    transparent 100%);
+}
+
+/* 중앙 장식 원 */
+.cover-circle {
+  position: absolute;
+  top: 50%; right: -15mm;
+  transform: translateY(-50%);
+  width: 55mm; height: 55mm;
+  border-radius: 50%;
+  border: 0.4mm solid rgba(200,168,75,0.15);
+}
+.cover-circle2 {
+  position: absolute;
+  top: 50%; right: -8mm;
+  transform: translateY(-50%);
+  width: 40mm; height: 40mm;
+  border-radius: 50%;
+  border: 0.3mm solid rgba(200,168,75,0.1);
+}
+
+/* 상단 영역 — 브랜드 워터마크 */
+.cover-top-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 22mm 22mm 0 26mm;
+}
+
+.cover-eyebrow {
+  font-size: 6.5pt;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 8mm;
+}
+
+.cover-watermark {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 80pt;
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+  letter-spacing: -3px;
+  pointer-events: none;
+  position: absolute;
+  top: 28mm; left: 20mm;
+}
+
+.cover-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 28pt;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 5mm;
+  position: relative;
+  z-index: 1;
+}
+
+.cover-title span { color: var(--gold); }
+
+.cover-divider {
+  width: 20mm;
+  height: 0.5mm;
+  background: var(--gold);
+  margin-bottom: 5mm;
+  border-radius: 0.5mm;
+}
+
+.cover-sub {
+  font-size: 9pt;
+  color: rgba(255,255,255,0.52);
+  line-height: 1.72;
+  max-width: 120mm;
+  margin-bottom: 8mm;
+}
+
+.cover-producer {
+  display: inline-flex;
+  align-items: center;
+  gap: 4mm;
+  background: rgba(200,168,75,0.1);
+  border: 0.4mm solid rgba(200,168,75,0.4);
+  border-radius: 1.5mm;
+  padding: 3mm 5mm;
+  width: fit-content;
+}
+
+.cover-producer .bar {
+  width: 0.7mm; height: 9mm;
+  background: linear-gradient(to bottom, var(--gold), rgba(200,168,75,0.5));
+  border-radius: 0.5mm;
+  flex-shrink: 0;
+}
+
+.cover-producer .label {
+  font-size: 6pt;
+  letter-spacing: 2.5px;
+  color: rgba(200,168,75,0.7);
+  text-transform: uppercase;
+  margin-bottom: 1mm;
+}
+
+.cover-producer .name {
+  font-size: 12pt;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+
+/* 하단 메타 영역 */
+.cover-bottom-area {
+  padding: 0 26mm 22mm 26mm;
+  position: relative;
+  z-index: 1;
+}
+
+.cover-meta-divider {
+  height: 0.3mm;
+  background: rgba(200,168,75,0.25);
+  margin-bottom: 6mm;
+}
+
+.cover-metas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4mm;
+}
+
+.cover-meta-item {
+  border-left: 0.5mm solid rgba(200,168,75,0.5);
+  padding-left: 3mm;
+}
+
+.cover-meta-item .ml {
+  font-size: 5.5pt;
+  letter-spacing: 2px;
+  color: rgba(200,168,75,0.75);
+  text-transform: uppercase;
+  margin-bottom: 1.5mm;
+}
+
+.cover-meta-item .mv {
+  font-size: 8pt;
+  color: rgba(255,255,255,0.8);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════
+   목차 페이지
+══════════════════════════════════════════ */
+.toc-page-inner {
+  height: calc(var(--page-h) - var(--margin) * 2);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단 헤더 영역 */
+.toc-header {
+  margin-bottom: 8mm;
+  padding-bottom: 6mm;
+  border-bottom: 0.4mm solid var(--navy);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.toc-header-left {}
+
+.toc-eyebrow {
+  font-size: 7pt;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 3mm;
+}
+
+.toc-main-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 26pt;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+}
+
+.toc-header-right {
+  font-size: 7.5pt;
+  color: var(--gray);
+  text-align: right;
+  line-height: 1.7;
+}
+
+/* 목차 리스트 — 세로 균등 배분 */
+.toc-list {
+  list-style: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.toc-list li {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border-bottom: 0.3mm solid var(--gl);
+  padding: 4mm 0;
+}
+
+.toc-list li:last-child { border-bottom: none; }
+
+/* 챕터 번호 사이드바 */
+.toc-ch-side {
+  width: 22mm;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 5mm;
+  border-right: 0.5mm solid var(--gl);
+  margin-right: 5mm;
+}
+
+.toc-ch-label {
+  font-size: 6pt;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 1.5mm;
+}
+
+.toc-ch-num {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 20pt;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+  opacity: 0.12;
+}
+
+/* 콘텐츠 영역 */
+.toc-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.toc-name {
+  font-size: 11.5pt;
+  color: var(--navy);
+  font-weight: 700;
+  margin-bottom: 2mm;
+  line-height: 1.3;
+}
+
+.toc-sub {
+  font-size: 8pt;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* 페이지 번호 표시 */
+.toc-pg {
+  width: 8mm;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 9pt;
+  color: var(--gl);
+  font-weight: 700;
+}
+
+/* 보고서 정보 박스 */
+.toc-info-box {
+  margin-top: 8mm;
+  padding: 4mm 5mm;
+  background: var(--navy);
+  border-radius: 2mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toc-info-box .tib-label {
+  font-size: 6.5pt;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1mm;
+}
+
+.toc-info-box .tib-val {
+  font-size: 9pt;
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+}
+
+.toc-info-box .tib-divider {
+  width: 0.3mm;
+  height: 10mm;
+  background: rgba(200,168,75,0.3);
+}
+
+/* ══════════════════════════════════════════
+   본문 공통
+══════════════════════════════════════════ */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 4mm;
+  margin-bottom: 2mm;
+  margin-top: 8mm;
+  padding-bottom: 3mm;
+  border-bottom: 0.3mm solid var(--gl);
+}
+
+.section-num {
+  font-size: 7pt;
+  letter-spacing: 2px;
+  color: var(--gold);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.section-line { flex: 1; height: 0.3mm; background: var(--gl); }
+
+.section-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 17pt;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1.5mm;
+  line-height: 1.3;
+}
+
+.section-lead {
+  font-size: 8pt;
+  color: var(--gray);
+  line-height: 1.65;
+  margin-bottom: 5mm;
+}
+
+.section-lead strong { color: var(--navy); }
+
+/* ── 인사이트 카드 (다크) ─────────────────── */
+.insight-card {
+  background: var(--navy);
+  border-radius: 2.5mm;
+  padding: 5mm 6mm;
+  margin-bottom: 4mm;
+  position: relative;
+  overflow: hidden;
+}
+
+.insight-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 1mm; height: 100%;
+  background: var(--gold);
+}
+
+.insight-card .ic-label {
+  font-size: 6.5pt;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 2mm;
+}
+
+.insight-card .ic-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 11.5pt;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2.5mm;
+  line-height: 1.4;
+}
+
+.insight-card .ic-body {
+  font-size: 8.5pt;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.72;
+}
+
+.insight-card .ic-body strong { color: var(--gold-lt); }
+
+/* ── 일반 카드 ────────────────────────────── */
+.card {
+  background: #fff;
+  border: 0.3mm solid var(--gl);
+  border-radius: 2.5mm;
+  padding: 4.5mm 5mm;
+  margin-bottom: 4mm;
+}
+
+.card-title {
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 3.5mm;
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+}
+
+.card-title .dot {
+  width: 2mm; height: 2mm;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.card-body { font-size: 8.5pt; color: var(--text); line-height: 1.75; }
+
+/* ── 그리드 ──────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; margin-bottom: 3.5mm; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; margin-bottom: 3.5mm; }
+
+/* ── 번호 리스트 ─────────────────────────── */
+.num-list { list-style: none; counter-reset: nl; }
+.num-list li {
+  counter-increment: nl;
+  display: flex;
+  gap: 3mm;
+  margin-bottom: 3.5mm;
+  font-size: 8.5pt;
+  line-height: 1.72;
+}
+.num-list li::before {
+  content: counter(nl, decimal-leading-zero);
+  font-family: 'Noto Serif KR', serif;
+  font-size: 7.5pt;
+  font-weight: 700;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 5mm;
+  margin-top: 0.5mm;
+}
+.num-list li strong { color: var(--navy); }
+
+/* ── 불릿 리스트 ─────────────────────────── */
+.bul-list { list-style: none; }
+.bul-list li {
+  display: flex;
+  gap: 2mm;
+  font-size: 8.5pt;
+  line-height: 1.72;
+  margin-bottom: 2mm;
+}
+.bul-list li::before {
+  content: '→';
+  color: var(--gold);
+  flex-shrink: 0;
+  font-size: 8pt;
+  margin-top: 0.5mm;
+}
+
+/* ── 테이블 ──────────────────────────────── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 8pt; margin: 3mm 0; }
+.tbl th {
+  background: var(--navy);
+  color: rgba(255,255,255,0.9);
+  padding: 2.5mm 3mm;
+  text-align: left;
+  font-weight: 500;
+  font-size: 7.5pt;
+}
+.tbl td {
+  padding: 2.5mm 3mm;
+  border-bottom: 0.3mm solid var(--gl);
+  color: var(--text);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.tbl tr:nth-child(even) td { background: var(--cream); }
+.tbl td strong { color: var(--navy); }
+
+/* ── 태그 ────────────────────────────────── */
+.tag {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  font-size: 7pt;
+  padding: 0.8mm 2.5mm;
+  border-radius: 1mm;
+  margin-right: 1mm;
+  margin-bottom: 1mm;
+  font-weight: 500;
+}
+.tag.gold { background: var(--gold); color: var(--navy); }
+.tag.light { background: var(--gl); color: var(--navy); }
+.tag.red   { background: var(--red); }
+
+/* ── 통계 박스 ───────────────────────────── */
+.stat-row { display: flex; gap: 3mm; margin-bottom: 4mm; }
+.stat-box {
+  flex: 1;
+  background: var(--cream);
+  border-radius: 2mm;
+  padding: 4mm 3mm;
+  text-align: center;
+  border: 0.3mm solid rgba(200,168,75,0.25);
+}
+.stat-box .num {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 24pt;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 1.5mm;
+}
+.stat-box .num span { color: var(--gold); font-size: 14pt; }
+.stat-box .desc { font-size: 7.5pt; color: var(--gray); line-height: 1.5; }
+
+/* ── 퍼널 ────────────────────────────────── */
+.funnel { display: flex; flex-direction: column; margin: 3mm 0; }
+.funnel-step { display: flex; align-items: stretch; gap: 3mm; margin-bottom: 1mm; }
+.funnel-icon { width: 8mm; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; }
+.funnel-circle {
+  width: 8mm; height: 8mm;
+  border-radius: 50%;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  font-family: 'Noto Serif KR', serif;
+  font-size: 9pt; font-weight: 700;
+  flex-shrink: 0;
+}
+.funnel-line-v { flex: 1; width: 0.3mm; background: var(--gl); margin: 0 auto; }
+.funnel-content { flex: 1; padding: 1mm 0 4mm; }
+.funnel-content .f-label {
+  font-size: 6.5pt; color: var(--gold);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 0.8mm;
+}
+.funnel-content .f-title {
+  font-size: 9.5pt; font-weight: 700;
+  color: var(--navy); margin-bottom: 1mm;
+}
+.funnel-content .f-desc { font-size: 8pt; color: var(--text); line-height: 1.65; }
+.funnel-content .f-tags { margin-top: 1.5mm; }
+
+/* ── ABCD 그리드 ─────────────────────────── */
+.abcd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; margin: 3.5mm 0; }
+.abcd-card { border: 0.3mm solid var(--gl); border-radius: 2.5mm; overflow: hidden; }
+.abcd-header {
+  background: var(--navy-mid);
+  padding: 3mm 4mm;
+  display: flex; align-items: center; gap: 3mm;
+}
+.abcd-letter {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 20pt; font-weight: 900; color: var(--gold); line-height: 1;
+}
+.abcd-header-text .en { font-size: 6.5pt; color: rgba(255,255,255,0.5); letter-spacing: 1.5px; }
+.abcd-header-text .ko { font-size: 9pt; color: #fff; font-weight: 600; }
+.abcd-body { padding: 3.5mm; background: #fff; }
+.abcd-body ul { list-style: none; }
+.abcd-body ul li {
+  font-size: 8pt; color: var(--text);
+  padding: 1.8mm 0;
+  border-bottom: 0.3mm solid var(--gl);
+  display: flex; gap: 2mm; line-height: 1.6;
+}
+.abcd-body ul li:last-child { border-bottom: none; }
+.abcd-body ul li::before { content: '→'; color: var(--gold); font-size: 7.5pt; flex-shrink: 0; margin-top: 0.5mm; }
+
+/* ── 콘텐츠 유형 그리드 ─────────────────── */
+.ct-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 3mm 0; }
+.ct-card {
+  background: var(--cream);
+  border-radius: 2mm;
+  padding: 3.5mm 3mm;
+  border-top: 0.8mm solid var(--navy);
+}
+.ct-card:nth-child(1) { border-top-color: #3B82C4; }
+.ct-card:nth-child(2) { border-top-color: #10B981; }
+.ct-card:nth-child(3) { border-top-color: var(--gold); }
+.ct-card:nth-child(4) { border-top-color: var(--red); }
+.ct-icon { font-size: 14pt; margin-bottom: 2mm; }
+.ct-name { font-size: 8.5pt; font-weight: 700; color: var(--navy); margin-bottom: 1.5mm; }
+.ct-desc { font-size: 7.5pt; color: var(--gray); line-height: 1.6; margin-bottom: 2mm; }
+.ct-goal { font-size: 7pt; color: var(--blue); font-weight: 600; }
+
+/* ── 강조 박스들 ─────────────────────────── */
+.highlight {
+  background: var(--cream);
+  border: 0.3mm solid rgba(200,168,75,0.4);
+  border-radius: 2mm;
+  padding: 3mm 4mm;
+  margin: 3mm 0;
+  font-size: 8.5pt;
+  line-height: 1.75;
+  color: var(--navy);
+}
+.highlight strong { color: var(--navy); }
+
+.note-box {
+  background: #EFF6FF;
+  border: 0.3mm solid #BFDBFE;
+  border-radius: 2mm;
+  padding: 3mm 4mm;
+  margin: 3mm 0;
+  font-size: 8pt;
+  line-height: 1.72;
+  color: #1E3A5F;
+}
+.note-box strong { color: #1E40AF; }
+
+.warn-box {
+  background: #FFF7ED;
+  border: 0.3mm solid #F59E0B;
+  border-radius: 2mm;
+  padding: 3mm 4mm;
+  margin: 3mm 0;
+  font-size: 8pt;
+  line-height: 1.72;
+}
+.warn-box strong { color: #92400E; }
+
+.action-box {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  border-radius: 2.5mm;
+  padding: 5mm 6mm;
+  margin: 4mm 0;
+  border-left: 1.2mm solid var(--gold);
+}
+.action-box .ab-label {
+  font-size: 6.5pt; letter-spacing: 2px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 2mm;
+}
+.action-box .ab-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 11pt; font-weight: 700; color: #fff; margin-bottom: 3mm;
+}
+.action-box ul { list-style: none; }
+.action-box ul li {
+  font-size: 8.5pt; color: rgba(255,255,255,0.82);
+  padding: 2mm 0; display: flex; gap: 2.5mm; line-height: 1.65;
+  border-bottom: 0.3mm solid rgba(255,255,255,0.07);
+}
+.action-box ul li:last-child { border-bottom: none; }
+.action-box ul li::before { content: '✓'; color: var(--gold); flex-shrink: 0; margin-top: 0.5mm; }
+.action-box ul li strong { color: var(--gold-lt); }
+
+/* ── 용어 설명 박스 ──────────────────────── */
+.term-box {
+  display: flex;
+  gap: 3mm;
+  background: #EFF6FF;
+  border: 0.3mm solid #C7D6F5;
+  border-left: 1mm solid var(--blue);
+  border-radius: 2mm;
+  padding: 3mm 3.5mm;
+  margin: 3mm 0;
+}
+.term-icon { font-size: 10pt; flex-shrink: 0; margin-top: 0.3mm; }
+.term-title {
+  font-size: 8.5pt; font-weight: 700; color: var(--blue);
+  margin-bottom: 1.5mm; letter-spacing: 0.2px;
+}
+.term-title span { font-size: 7.5pt; font-weight: 400; color: var(--gray); margin-left: 2mm; }
+.term-desc { font-size: 8pt; color: var(--text); line-height: 1.7; }
+
+/* ── 구분선 ──────────────────────────────── */
+.divider { height: 0.3mm; background: var(--gl); margin: 3.5mm 0; }
+
+/* ── 페이지 번호 ─────────────────────────── */
+.pg-num {
+  position: absolute;
+  bottom: 7mm; right: var(--margin);
+  font-size: 7pt; color: var(--gray);
+  font-family: 'Noto Serif KR', serif;
+}
+
+.pg-footer {
+  position: absolute;
+  bottom: 7mm; left: var(--margin);
+  font-size: 7pt; color: var(--gl);
+  letter-spacing: 0.5px;
+}
+
+/* ── 챕터 헤더 (페이지 상단) ─────────────── */
+.page-chapter-bar {
+  background: var(--navy);
+  margin: calc(-1 * var(--margin));
+  margin-bottom: 6mm;
+  padding: 3mm var(--margin);
+  display: flex;
+  align-items: center;
+  gap: 4mm;
+}
+.page-chapter-bar .ch-num {
+  font-size: 6.5pt; color: var(--gold);
+  letter-spacing: 2px; font-weight: 600;
+  text-transform: uppercase;
+}
+.page-chapter-bar .ch-title {
+  font-size: 8pt; color: rgba(255,255,255,0.75);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════ PAGE 1 — 표지 ══════════ -->
+<div class="page cover-page">
+  <div class="cover-inner">
+    <!-- 장식 요소들 -->
+    <div class="cover-deco-line"></div>
+    <div class="cover-deco-line2"></div>
+    <div class="cover-top-bar"></div>
+    <div class="cover-bot-bar"></div>
+    <div class="cover-circle"></div>
+    <div class="cover-circle2"></div>
+    <div class="cover-watermark">G</div>
+
+    <!-- 상단 콘텐츠 영역 -->
+    <div class="cover-top-area">
+      <div class="cover-eyebrow">Seminar Insight Report &nbsp;·&nbsp; Google Korea &nbsp;·&nbsp; 2026</div>
+
+      <div class="cover-title">
+        구글 <span>법률광고</span><br>세미나<br>인사이트 보고서
+      </div>
+
+      <div class="cover-divider"></div>
+
+      <div class="cover-sub">
+        Google Korea 주최 법무법인 대상 마케팅 세미나 발표 내용을<br>챕터별로 정리한 보고서입니다.
+      </div>
+
+      <div class="cover-producer">
+        <div class="bar"></div>
+        <div>
+          <div class="label">Report Produced by</div>
+          <div class="name">로케팅 김래균</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 하단 메타 정보 영역 -->
+    <div class="cover-bottom-area">
+      <div class="cover-meta-divider"></div>
+      <div class="cover-metas">
+        <div class="cover-meta-item">
+          <div class="ml">주최</div>
+          <div class="mv">Google Korea</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="ml">대상</div>
+          <div class="mv">법무법인 · 변호사 사무소</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="ml">발표자</div>
+          <div class="mv">구글 김영훈 · 조혜원<br>김소연 · 임수연</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="ml">주요 주제</div>
+          <div class="mv">GEO · 유튜브 · ABCD<br>리드퀄리티 · 키워드</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PAGE 2 — 목차 ══════════ -->
+<div class="page">
+  <div class="toc-page-inner">
+
+    <!-- 상단 헤더 -->
+    <div class="toc-header">
+      <div class="toc-header-left">
+        <div class="toc-eyebrow">Contents</div>
+        <div class="toc-main-title">목차</div>
+      </div>
+      <div class="toc-header-right">
+        Google Korea 주최 법무법인 마케팅 세미나<br>
+        발표 내용 + 공식 자료 통합 · 총 14페이지
+      </div>
+    </div>
+
+    <!-- 목차 리스트 UPDATED --><ul class="toc-list">
+      <li>
+        <div class="toc-ch-side">
+          <div class="toc-ch-label">Chapter</div>
+          <div class="toc-ch-num">01</div>
+        </div>
+        <div class="toc-content">
+          <div class="toc-name">검색 환경의 변화와 예비 의뢰인 이해</div>
+          <div class="toc-sub">GEO 등장 · 예비 의뢰인 6단계 의사결정 여정 · 분야별 탐색 심리</div>
+        </div>
+        <div class="toc-pg">3</div>
+      </li>
+      <li>
+        <div class="toc-ch-side">
+          <div class="toc-ch-label">Chapter</div>
+          <div class="toc-ch-num">02</div>
+        </div>
+        <div class="toc-content">
+          <div class="toc-name">유튜브 — 법무법인 온라인 사무소 전략</div>
+          <div class="toc-sub">콘텐츠 4유형 · 분야별 우선순위 · 채널 세팅 · 광고 부스팅</div>
+        </div>
+        <div class="toc-pg">4–5</div>
+      </li>
+      <li>
+        <div class="toc-ch-side">
+          <div class="toc-ch-label">Chapter</div>
+          <div class="toc-ch-num">03</div>
+        </div>
+        <div class="toc-content">
+          <div class="toc-name">구글 광고 ABCD 프레임워크</div>
+          <div class="toc-sub">전 지면 진출 · 입찰 자동화 · 진성 타겟팅 · 결정 순간 소재 · 용어 해설</div>
+        </div>
+        <div class="toc-pg">6</div>
+      </li>
+      <li>
+        <div class="toc-ch-side">
+          <div class="toc-ch-label">Chapter</div>
+          <div class="toc-ch-num">04</div>
+        </div>
+        <div class="toc-content">
+          <div class="toc-name">리드 퀄리티 개선 전략</div>
+          <div class="toc-sub">문제 정의 · 지면 정교화 · 구글 리드폼 · 향상된 전환</div>
+        </div>
+        <div class="toc-pg">7</div>
+      </li>
+      <li>
+        <div class="toc-ch-side">
+          <div class="toc-ch-label">Chapter</div>
+          <div class="toc-ch-num">05</div>
+        </div>
+        <div class="toc-content">
+          <div class="toc-name">키워드 전략 — 상위 노출보다 중요한 것</div>
+          <div class="toc-sub">3단계 키워드 구조 · 분야별 키워드 특성 · 예산 배분 원칙</div>
+        </div>
+        <div class="toc-pg">8</div>
+      </li>
+      <li>
+        <div class="toc-ch-side">
+          <div class="toc-ch-label">Summary</div>
+          <div class="toc-ch-num" style="font-size:13pt;">✓</div>
+        </div>
+        <div class="toc-content">
+          <div class="toc-name">세미나 최종 요약 — 2가지 즉시 행동 과제</div>
+          <div class="toc-sub">담당 매니저와 확인할 항목 · 구글이 강조한 3가지 흐름</div>
+        </div>
+        <div class="toc-pg">9</div>
+      </li>
+    </ul>
+
+    <!-- 하단 보고서 정보 -->
+    <div class="toc-info-box">
+      <div>
+        <div class="tib-label">Report Produced by</div>
+        <div class="tib-val">로케팅 김래균</div>
+      </div>
+      <div class="tib-divider"></div>
+      <div>
+        <div class="tib-label">발표자</div>
+        <div class="tib-val">구글 김영훈 · 조혜원 · 김소연 · 임수연</div>
+      </div>
+      <div class="tib-divider"></div>
+      <div>
+        <div class="tib-label">주최</div>
+        <div class="tib-val">Google Korea · 2026</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="pg-num">2</div>
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+</div>
+
+<!-- ══════════ PAGE 3 — Ch1 시장 데이터 ══════════ -->
+<div class="page">
+  <div class="page-chapter-bar">
+    <span class="ch-num">Chapter 01</span>
+    <span class="ch-title">법률 서비스 시장 현황 — 데이터로 보는 경쟁 구도 &nbsp;·&nbsp; 출처: 구글 공식 발표자료</span>
+  </div>
+
+  <div class="section-title">치열해진 법률 시장 — 데이터가 말하는 현실</div>
+  <div class="section-lead">구글이 세미나 공식 자료로 공개한 법무부 통계와 구글 내부 데이터를 통해 현재 법률 서비스 시장의 경쟁 강도와 기회를 정량적으로 이해한다.</div>
+
+  <div class="insight-card">
+    <div class="ic-label">시장 인사이트</div>
+    <div class="ic-title">변호사 4만 명 시대 — 수임 격차는 마케팅에서 만들어진다</div>
+    <div class="ic-body">2020년 29,584명이었던 등록 변호사 수가 2025년 37,981명으로 <strong>28% 증가</strong>했다. 법무법인 수도 같은 기간 1,295개에서 1,657개로 늘어났다. 변호사 공급 증가에 따라 예비 의뢰인의 선택지가 확대되고 있으며, 디지털 채널을 통한 접점 확보 없이는 법인의 역량과 무관하게 수임 기회가 감소할 수 있다. 선도적 법무법인들은 이미 구글 플랫폼을 통해 수임 격차를 형성하고 있는 것으로 분석된다.</div>
+  </div>
+
+  <!-- 변호사 수 데이터 테이블 + 핵심 수치 -->
+  <div class="grid-2" style="margin-bottom:4mm;align-items:start;">
+    <div class="card" style="margin-bottom:0">
+      <div class="card-title"><span class="dot"></span>연도별 변호사 / 법무법인 수 (2020–2025)</div>
+      <table class="tbl">
+        <thead>
+          <tr><th>연도</th><th>등록 변호사</th><th>법무법인</th><th>전년 대비</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2020</td><td>29,584명</td><td>1,295개</td><td>—</td></tr>
+          <tr><td>2021</td><td>31,281명</td><td>1,362개</td><td>+5.7%</td></tr>
+          <tr><td>2022</td><td>32,981명</td><td>1,446개</td><td>+5.4%</td></tr>
+          <tr><td>2023</td><td>34,672명</td><td>1,514개</td><td>+5.1%</td></tr>
+          <tr><td>2024</td><td>36,821명</td><td>1,579개</td><td>+6.2%</td></tr>
+          <tr><td><strong>2025</strong></td><td><strong>37,981명</strong></td><td><strong>1,657개</strong></td><td><strong>+3.2%</strong></td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:7pt;color:var(--gray);margin-top:2mm;">출처: 법무부 공표자료, 지표누리</div>
+    </div>
+    <div>
+      <div class="stat-row" style="flex-direction:column;gap:2.5mm;margin-bottom:0">
+        <div class="stat-box">
+          <div class="num">28<span>%↑</span></div>
+          <div class="desc">5년간 등록 변호사 수<br>증가율 (2020→2025)</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">28<span>%↑</span></div>
+          <div class="desc">법무법인 수 증가율<br>(1,295→1,657개)</div>
+        </div>
+        <div class="stat-box">
+          <div class="num" style="font-size:18pt;">4만<span style="font-size:11pt;">명</span></div>
+          <div class="desc">2026년 예상 등록 변호사 수<br><strong style="color:var(--navy);">경쟁은 더 치열해진다</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 구글 검색광고 기회 추이 -->
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>법률 서비스 분야 구글 광고 투자 5년 추이 — 구글 내부 데이터</div>
+    <div class="grid-2" style="margin-bottom:0">
+      <div>
+        <div style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:2mm;">① 검색 광고 기회 추이 (상대치)</div>
+        <div style="background:var(--cream);border-radius:2mm;padding:3mm;border:0.3mm solid rgba(200,168,75,0.2);margin-bottom:3mm;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;height:22mm;margin-bottom:2mm;padding:0 2mm;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--blue);font-weight:700;">43</div>
+              <div style="width:5mm;background:var(--blue);border-radius:0.5mm 0.5mm 0 0;" style="height:calc(43% * 1mm)"></div>
+              <div style="width:5mm;height:9.5mm;background:var(--blue);border-radius:0.5mm 0.5mm 0 0;opacity:0.5;"></div>
+              <div style="font-size:6.5pt;color:var(--gray);">'21</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--blue);font-weight:700;">52</div>
+              <div style="width:5mm;height:11.4mm;background:var(--blue);border-radius:0.5mm 0.5mm 0 0;opacity:0.6;"></div>
+              <div style="font-size:6.5pt;color:var(--gray);">'22</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--blue);font-weight:700;">62.6</div>
+              <div style="width:5mm;height:13.8mm;background:var(--blue);border-radius:0.5mm 0.5mm 0 0;opacity:0.7;"></div>
+              <div style="font-size:6.5pt;color:var(--gray);">'23</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--blue);font-weight:700;">80</div>
+              <div style="width:5mm;height:17.6mm;background:var(--blue);border-radius:0.5mm 0.5mm 0 0;opacity:0.8;"></div>
+              <div style="font-size:6.5pt;color:var(--gray);">'24</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--blue);font-weight:700;">93.7</div>
+              <div style="width:5mm;height:20.6mm;background:var(--blue);border-radius:0.5mm 0.5mm 0 0;opacity:0.9;"></div>
+              <div style="font-size:6.5pt;color:var(--gray);">'25</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--gold);font-weight:700;">94.3</div>
+              <div style="width:5mm;height:20.7mm;background:var(--gold);border-radius:0.5mm 0.5mm 0 0;"></div>
+              <div style="font-size:6.5pt;color:var(--gold);font-weight:600;">'26</div>
+            </div>
+          </div>
+          <div style="font-size:7pt;color:var(--gray);text-align:center;">광고 노출 가능한 유효 검색 기회의 총합 (최근 5년)</div>
+        </div>
+        <div class="highlight" style="margin:0;font-size:8pt;">예비 의뢰인이 실질적 법률 해답을 구글 검색을 통해 탐색하고 있음이 수치로 확인된다. 2021년 대비 <strong>+119% 성장</strong>.</div>
+      </div>
+      <div>
+        <div style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:2mm;">② 법률 분야 구글 광고 투자비 추이 (상대치)</div>
+        <div style="background:var(--cream);border-radius:2mm;padding:3mm;border:0.3mm solid rgba(200,168,75,0.2);margin-bottom:3mm;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;height:22mm;margin-bottom:2mm;padding:0 2mm;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--navy);font-weight:700;">24.5</div>
+              <div style="width:5mm;height:5.4mm;background:var(--navy);border-radius:0.5mm 0.5mm 0 0;opacity:0.4;"></div>
+              <div style="font-size:6.5pt;color:var(--gray);">'21</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--navy);font-weight:700;">37.8</div>
+              <div style="width:5mm;height:8.3mm;background:var(--navy);border-radius:0.5mm 0.5mm 0 0;opacity:0.5;"></div>
+              <div style="font-size:6.5pt;color:var(--gray);">'22</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--navy);font-weight:700;">48.9</div>
+              <div style="width:5mm;height:10.8mm;background:var(--navy);border-radius:0.5mm 0.5mm 0 0;opacity:0.6;"></div>
+              <div style="font-size:6.5pt;color:var(--gray);">'23</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--navy);font-weight:700;">49.5</div>
+              <div style="width:5mm;height:10.9mm;background:var(--navy);border-radius:0.5mm 0.5mm 0 0;opacity:0.7;"></div>
+              <div style="font-size:6.5pt;color:var(--gray);">'24</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--navy);font-weight:700;">76</div>
+              <div style="width:5mm;height:16.7mm;background:var(--navy);border-radius:0.5mm 0.5mm 0 0;opacity:0.85;"></div>
+              <div style="font-size:6.5pt;color:var(--gray);">'25.1</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:1mm;">
+              <div style="font-size:7pt;color:var(--gold);font-weight:700;">98.3</div>
+              <div style="width:5mm;height:21.6mm;background:var(--gold);border-radius:0.5mm 0.5mm 0 0;"></div>
+              <div style="font-size:6.5pt;color:var(--gold);font-weight:600;">'26.3</div>
+            </div>
+          </div>
+          <div style="font-size:7pt;color:var(--gray);text-align:center;">법률 서비스 분야 구글 광고 투자비 (최근 5년 · max=100 상대치)</div>
+        </div>
+        <div class="highlight" style="margin:0;font-size:8pt;">선도 법무법인들의 구글 광고 투자 집중이 데이터로 확인된다. 법률 분야 구글 광고 투자비는 5년간 <strong>+301% 증가</strong>하였다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 유튜브 성장 데이터 -->
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>법률 서비스 유튜브 조회수 — 타 분야 압도적 성장 (2023→2025)</div>
+    <div class="grid-3" style="margin-bottom:3mm;">
+      <div style="text-align:center;background:var(--cream);border-radius:2mm;padding:4mm 3mm;border-top:1mm solid var(--blue);">
+        <div style="font-size:7pt;font-weight:700;color:var(--blue);letter-spacing:1px;margin-bottom:2mm;">법률 서비스</div>
+        <div style="font-family:'Noto Serif KR',serif;font-size:26pt;font-weight:900;color:var(--navy);line-height:1;">278<span style="font-size:14pt;color:var(--gold);">%</span></div>
+        <div style="font-size:8pt;color:var(--text);margin-top:1.5mm;">조회수 증가 (23.01→25.12)</div>
+        <div style="font-size:7.5pt;color:var(--gray);margin-top:1mm;">조회당 시청 시간: <strong style="color:var(--navy);">2.65분</strong></div>
+        <div style="font-size:7pt;color:var(--blue);margin-top:1mm;">2026년 1월 최대 조회수 1억</div>
+      </div>
+      <div style="text-align:center;background:var(--cream);border-radius:2mm;padding:4mm 3mm;border-top:1mm solid var(--gray);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gray);letter-spacing:1px;margin-bottom:2mm;">교육</div>
+        <div style="font-family:'Noto Serif KR',serif;font-size:26pt;font-weight:900;color:var(--navy);line-height:1;opacity:0.5;">49<span style="font-size:14pt;color:var(--gray);">%</span></div>
+        <div style="font-size:8pt;color:var(--text);margin-top:1.5mm;">조회수 증가</div>
+        <div style="font-size:7.5pt;color:var(--gray);margin-top:1mm;">조회당 시청 시간: 2.04분</div>
+        <div style="font-size:7pt;color:var(--gray);margin-top:1mm;">최대 조회수 2억</div>
+      </div>
+      <div style="text-align:center;background:var(--cream);border-radius:2mm;padding:4mm 3mm;border-top:1mm solid var(--gray);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gray);letter-spacing:1px;margin-bottom:2mm;">부동산</div>
+        <div style="font-family:'Noto Serif KR',serif;font-size:26pt;font-weight:900;color:var(--navy);line-height:1;opacity:0.35;">27<span style="font-size:14pt;color:var(--gray);">%</span></div>
+        <div style="font-size:8pt;color:var(--text);margin-top:1.5mm;">조회수 증가</div>
+        <div style="font-size:7.5pt;color:var(--gray);margin-top:1mm;">조회당 시청 시간: 1.82분</div>
+        <div style="font-size:7pt;color:var(--gray);margin-top:1mm;">최대 조회수 4억</div>
+      </div>
+    </div>
+    <div class="note-box" style="margin:0">
+      <strong>핵심 해석:</strong> 법률 서비스 유튜브 조회수는 교육 분야 대비 5.7배 빠른 성장세를 보이며, 조회당 시청 시간 또한 비교 분야 중 최장 수준인 2.65분으로 집계된다. 예비 의뢰인의 법률 콘텐츠 몰입도가 타 분야 대비 현저히 높음을 시사한다. 변호사·법무법인 유튜브 채널 수는 2020년 50개에서 2025년 1,200~1,500개로 확대되었으며, 채널 선점 경쟁이 본격화되는 시점으로 평가된다.
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:4mm;background:var(--navy);border-radius:2.5mm;padding:4mm 5mm;margin-top:4mm;">
+    <div style="width:1mm;height:12mm;background:var(--gold);border-radius:0.5mm;flex-shrink:0;"></div>
+    <div style="font-size:9.5pt;font-weight:700;color:#fff;line-height:1.5;">
+      <span style="color:var(--gold);">결론:</span>&nbsp; 법률 서비스 시장의 공급 과잉이 가속화되는 동시에, 구글 및 유튜브에 대한 광고 투자는 이미 가파른 증가세를 보이고 있다. 현 시점에서의 디지털 마케팅 채널 확보 지연은 향후 수임 경쟁력 측면에서 회복하기 어려운 기회비용을 발생시킬 수 있다.
+    </div>
+  </div>
+
+  <div class="pg-num">3</div>
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+</div>
+
+<!-- ══════════ PAGE 4 — Ch2 (구 Ch1-1) ══════════ -->
+<div class="page">
+  <div class="page-chapter-bar">
+    <span class="ch-num">Chapter 02</span>
+    <span class="ch-title">검색 환경의 변화와 예비 의뢰인 이해 &nbsp;·&nbsp; 발표: 구글 김영훈</span>
+  </div>
+
+  <div class="section-title">검색과 AI의 통합 — 구글 마케팅 환경의 구조적 변화</div>
+  <div class="section-lead">구글 플랫폼 데이터를 기반으로 예비 의뢰인의 의사결정 여정 변화와 이에 따른 법무법인의 대응 전략을 분석한 세션이다.</div>
+
+  <div class="insight-card">
+    <div class="ic-label">핵심 메시지</div>
+    <div class="ic-title">GEO(Generative AI Optimization)가 필요한 시대</div>
+    <div class="ic-body">구글 검색과 생성형 AI의 통합이 빠르게 진행되고 있으며, <strong>검색광고 최적화와 GEO(Generative AI Optimization)</strong>의 병행 운영이 필수 과제로 부상하였다. Gemini 등 AI 플랫폼이 법무법인을 직접 추천하는 환경에서, 명확한 전문성 포지셔닝이 구축되어 있어야 AI 추천 경쟁에서 우위를 확보할 수 있다.</div>
+  </div>
+
+  <div class="term-box">
+    <div class="term-icon">—</div>
+    <div>
+      <div class="term-title">GEO — Generative AI Optimization <span>생성형 AI 최적화</span></div>
+      <div class="term-desc">ChatGPT, Gemini 등 생성형 AI가 법률 서비스 추천 질의에 특정 법인을 직접 제안하는 사례가 증가하고 있다. GEO는 이러한 AI 추천 환경에서 자사 법인이 선택받을 수 있도록 홈페이지·블로그·유튜브 등 온라인 채널 전반에 수치·실적·전문성 정보를 체계적으로 구조화하는 작업으로, 기존 SEO를 확장한 개념이다.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>분야별 예비 의뢰인 탐색 심리 — 구글 내부 데이터 기반</div>
+    <div class="grid-3" style="margin-bottom:0">
+
+      <!-- 형사 -->
+      <div style="border:0.3mm solid var(--gl);border-radius:2mm;overflow:hidden;">
+        <div style="background:var(--red);padding:2.5mm 3mm;">
+          <div style="font-size:7pt;font-weight:700;color:#fff;letter-spacing:1px;">형사 분야</div>
+          <div style="font-size:8pt;font-weight:700;color:#fff;margin-top:0.5mm;">"당장 감옥에 갈까 봐 무섭다"</div>
+        </div>
+        <div style="padding:3mm;background:#fff;">
+          <div style="font-size:7.5pt;color:var(--gray);margin-bottom:2mm;">기기 특성: 압도적 모바일 집중 (100% 근접)</div>
+          <div style="margin-bottom:2mm;">
+            <div style="font-size:7pt;font-weight:700;color:var(--red);margin-bottom:1mm;">긴급 대응 키워드</div>
+            <div style="font-size:7.5pt;color:var(--text);line-height:1.7;">구속영장, 영장실질심사 대응, 구속영장 기각 방법, 검찰 조사 대비</div>
+          </div>
+          <div style="margin-bottom:2mm;">
+            <div style="font-size:7pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">급성장 키워드</div>
+            <div style="font-size:7.5pt;color:var(--text);line-height:1.7;">사기죄 합의하면 <span style="color:var(--red);font-weight:700;">YoY +255%</span><br>카촬죄 초범 실형 <span style="color:var(--red);font-weight:700;">YoY +208%</span></div>
+          </div>
+          <div>
+            <div style="font-size:7pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">인사이트</div>
+            <div style="font-size:7.5pt;color:var(--text);line-height:1.7;">처벌 수위 완화 또는 무죄 입증을 위한 구체적 방어 논리 탐색에 집중되는 패턴이 확인된다. 즉각적 법적 대응을 소구하는 광고 메시지가 효과적이다.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 이혼 -->
+      <div style="border:0.3mm solid var(--gl);border-radius:2mm;overflow:hidden;">
+        <div style="background:var(--blue);padding:2.5mm 3mm;">
+          <div style="font-size:7pt;font-weight:700;color:#fff;letter-spacing:1px;">이혼 분야</div>
+          <div style="font-size:8pt;font-weight:700;color:#fff;margin-top:0.5mm;">"내 몫을 얼마나 챙길 수 있을까?"</div>
+        </div>
+        <div style="padding:3mm;background:#fff;">
+          <div style="font-size:7.5pt;color:var(--gray);margin-bottom:2mm;">기기 특성: 다양한 기기 넘나드는 탐색 (모바일+PC)</div>
+          <div style="margin-bottom:2mm;">
+            <div style="font-size:7pt;font-weight:700;color:var(--blue);margin-bottom:1mm;">실리 집중 키워드</div>
+            <div style="font-size:7.5pt;color:var(--text);line-height:1.7;">양육비 산정표, 재산 분할, 사실혼 재산 분할, 협의 이혼 재산 분할</div>
+          </div>
+          <div style="margin-bottom:2mm;">
+            <div style="font-size:7pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">급성장 키워드</div>
+            <div style="font-size:7.5pt;color:var(--text);line-height:1.7;">재산분할 소송비용 <span style="color:var(--red);font-weight:700;">YoY +5,600%</span><br>상간자 소송 <span style="color:var(--red);font-weight:700;">YoY +301%</span></div>
+          </div>
+          <div>
+            <div style="font-size:7pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">인사이트</div>
+            <div style="font-size:7.5pt;color:var(--text);line-height:1.7;">절차·비용에 관한 구체적 정보 탐색형 검색이 주를 이룬다. 장기간의 숙고 과정을 거치는 분야 특성상 탐색 기간이 길고 다양한 기기에 걸친 멀티터치 패턴이 관찰된다.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 개인회생 -->
+      <div style="border:0.3mm solid var(--gl);border-radius:2mm;overflow:hidden;">
+        <div style="background:var(--green);padding:2.5mm 3mm;">
+          <div style="font-size:7pt;font-weight:700;color:#fff;letter-spacing:1px;">개인회생·파산</div>
+          <div style="font-size:8pt;font-weight:700;color:#fff;margin-top:0.5mm;">"나와 같은 사람이 성공했을까?"</div>
+        </div>
+        <div style="padding:3mm;background:#fff;">
+          <div style="font-size:7.5pt;color:var(--gray);margin-bottom:2mm;">기기 특성: 형사·이혼의 중간 수준 기기 활용</div>
+          <div style="margin-bottom:2mm;">
+            <div style="font-size:7pt;font-weight:700;color:var(--green);margin-bottom:1mm;">자격 검증 키워드</div>
+            <div style="font-size:7.5pt;color:var(--text);line-height:1.7;">빚 탕감 대상자 확인, 파산 신청 자격, 개인회생 준비 서류, 개인 워크아웃</div>
+          </div>
+          <div style="margin-bottom:2mm;">
+            <div style="font-size:7pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">급성장 키워드</div>
+            <div style="font-size:7.5pt;color:var(--text);line-height:1.7;">빚 탕감 대상자 확인 <span style="color:var(--red);font-weight:700;">YoY +1,064%</span><br>개인파산 신청 비용 <span style="color:var(--red);font-weight:700;">YoY +548%</span></div>
+          </div>
+          <div>
+            <div style="font-size:7pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">인사이트</div>
+            <div style="font-size:7.5pt;color:var(--text);line-height:1.7;">타인의 실질적 후기 확인, 자격 요건 검증, 부작용 사전 탐색 순으로 검색이 진행된다. 채무 해결 성공 사례 중심의 콘텐츠가 전환 유도에 가장 효과적인 것으로 분석된다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:3mm;">
+    <div class="card-title"><span class="dot"></span>예비 의뢰인의 의사결정 7단계 여정 — 개인회생 사례</div>
+    <div style="display:flex;gap:0;overflow:hidden;border-radius:2mm;border:0.3mm solid var(--gl);">
+      <div style="flex:1;padding:3mm 2.5mm;background:#fff;border-right:0.3mm solid var(--gl);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:1mm;">0단계</div>
+        <div style="font-size:8pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">인지</div>
+        <div style="font-size:7pt;color:var(--gray);line-height:1.6;">개인회생이 '내 이야기'가 아닌 상황. 광고 등으로 인지만 하는 단계.</div>
+        <div style="margin-top:2mm;font-size:6.5pt;background:var(--gl);padding:1.5mm;border-radius:1mm;color:var(--navy);">→ GEO + 배너 광고</div>
+      </div>
+      <div style="flex:1;padding:3mm 2.5mm;background:var(--cream);border-right:0.3mm solid var(--gl);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:1mm;">1단계</div>
+        <div style="font-size:8pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">기본정보 수집</div>
+        <div style="font-size:7pt;color:var(--gray);line-height:1.6;">채권 추심 독촉 후 AI/포털 검색 시작. 기본 정보 수집 단계.</div>
+        <div style="margin-top:2mm;font-size:6.5pt;background:var(--navy);padding:1.5mm;border-radius:1mm;color:var(--gold);">→ 검색광고 + GEO</div>
+      </div>
+      <div style="flex:1;padding:3mm 2.5mm;background:#fff;border-right:0.3mm solid var(--gl);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:1mm;">2단계</div>
+        <div style="font-size:8pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">텍스트 탐색</div>
+        <div style="font-size:7pt;color:var(--gray);line-height:1.6;">블로그, 뉴스, 커뮤니티에서 성공사례·후기·주의사항 탐색.</div>
+        <div style="margin-top:2mm;font-size:6.5pt;background:var(--gl);padding:1.5mm;border-radius:1mm;color:var(--navy);">→ 텍스트 콘텐츠</div>
+      </div>
+      <div style="flex:1;padding:3mm 2.5mm;background:var(--cream);border-right:0.3mm solid var(--gl);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:1mm;">3단계</div>
+        <div style="font-size:8pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">영상 탐색</div>
+        <div style="font-size:7pt;color:var(--gray);line-height:1.6;">유튜브에서 실제 사례·변호사 전문성 확인. 댓글 반응 탐구.</div>
+        <div style="margin-top:2mm;font-size:6.5pt;background:var(--navy);padding:1.5mm;border-radius:1mm;color:var(--gold);">→ 유튜브 채널</div>
+      </div>
+      <div style="flex:1;padding:3mm 2.5mm;background:#fff;border-right:0.3mm solid var(--gl);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:1mm;">4단계</div>
+        <div style="font-size:8pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">검증</div>
+        <div style="font-size:7pt;color:var(--gray);line-height:1.6;">후보 법무법인 웹사이트 방문. 약력·승소사례·리뷰 확인.</div>
+        <div style="margin-top:2mm;font-size:6.5pt;background:var(--gl);padding:1.5mm;border-radius:1mm;color:var(--navy);">→ 랜딩페이지 CRO</div>
+      </div>
+      <div style="flex:1;padding:3mm 2.5mm;background:var(--cream);border-right:0.3mm solid var(--gl);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:1mm;">5단계</div>
+        <div style="font-size:8pt;font-weight:700;color:var(--navy);margin-bottom:1mm;">비교</div>
+        <div style="font-size:7pt;color:var(--gray);line-height:1.6;">카카오·전화·방문 상담 진행. 후보군 종합 비교.</div>
+        <div style="margin-top:2mm;font-size:6.5pt;background:var(--gl);padding:1.5mm;border-radius:1mm;color:var(--navy);">→ UX·상담 응대</div>
+      </div>
+      <div style="flex:1;padding:3mm 2.5mm;background:var(--navy);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:1mm;">6단계</div>
+        <div style="font-size:8pt;font-weight:700;color:#fff;margin-bottom:1mm;">수임 계약</div>
+        <div style="font-size:7pt;color:rgba(255,255,255,0.7);line-height:1.6;">최종 법무법인 선정. 계약서 작성.</div>
+        <div style="margin-top:2mm;font-size:6.5pt;background:var(--gold);padding:1.5mm;border-radius:1mm;color:var(--navy);font-weight:700;">수임 완료</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pg-num">4</div>
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+</div>
+
+<!-- ══════════ PAGE 5 — Ch2 계속 GEO ══════════ -->
+<div class="page">
+  <div class="page-chapter-bar">
+    <span class="ch-num">Chapter 02</span>
+    <span class="ch-title">검색 환경의 변화 — GEO 시대의 포지셔닝 전략 &nbsp;·&nbsp; 발표: 구글 김영훈</span>
+  </div>
+
+  <div class="section-title">GEO 시대 — AI가 우리 법인을 추천하게 만들려면</div>
+  <div class="section-lead">예비 의뢰인의 의사결정 여정 전반에 걸쳐 구글 AI와 검색이 어떤 역할을 하는지, 그리고 법무법인이 이에 어떻게 대응해야 하는지를 다룬다.</div>
+
+  <div class="term-box">
+    <div class="term-icon">—</div>
+    <div>
+      <div class="term-title">검색광고 (SEA) <span>Search Engine Advertising</span></div>
+      <div class="term-desc">구글 검색 결과 상단에 노출되는 유료 광고 형태로, 사용자가 클릭할 때마다 비용이 발생하는 CPC(Cost Per Click) 방식으로 운영된다. 동일 키워드에 경쟁 법인들이 동시에 입찰하는 구조이므로, 키워드 선정 및 입찰 전략의 체계적 설계가 요구된다.</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:4mm;align-items:start;">
+    <div class="insight-card" style="margin-bottom:0;height:100%;">
+      <div class="ic-label">GEO 핵심 원리</div>
+      <div class="ic-title">AI가 우리 법인을 자신 있게 추천하려면 무엇이 필요한가</div>
+      <div class="ic-body">Gemini나 ChatGPT에 "개인회생 잘하는 변호사 추천해줘"라고 물으면 AI는 <strong>온라인에서 찾을 수 있는 정보의 총합</strong>을 기반으로 답한다. 이 추천에서 우리 법인이 선택받으려면 홈페이지·블로그·유튜브 설명·보도자료 등 모든 채널에서 <strong>수치·실적·전문성 정보</strong>가 명확하게 구조화되어 있어야 한다.</div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:3mm;">
+        <div class="card-title"><span class="dot"></span>GEO를 위한 콘텐츠 체크리스트</div>
+        <ul class="bul-list">
+          <li>주요 수임 분야의 승소율·처리 건수·주요 판례를 수치로 명시</li>
+          <li>대표 변호사 약력: 출신 법원, 특수 경력, 수임 분야 전문성</li>
+          <li>의뢰인 실제 후기 (구체적 상황 + 결과 포함)</li>
+          <li>FAQ 형식의 분야별 핵심 질문 답변 페이지 구성</li>
+          <li>유튜브 영상 설명란에 분야·키워드·실적 명시</li>
+        </ul>
+      </div>
+      <div class="warn-box" style="margin:0;">
+        <strong>주의:</strong> GEO는 SEO와 달리 키워드 밀도보다 <strong>정보의 신뢰성과 구체성</strong>이 핵심이다. AI는 모호한 설명보다 수치와 사례가 있는 법인을 더 자신 있게 추천한다.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>Chapter 2 핵심 요약 — 예비 의뢰인 이해와 포지셔닝</div>
+    <div class="grid-3" style="margin-bottom:0;">
+      <div style="background:var(--cream);border-radius:2mm;padding:3.5mm;border:0.3mm solid rgba(200,168,75,0.25);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:1.5mm;">① 분야별 심리 이해</div>
+        <div style="font-size:8pt;color:var(--text);line-height:1.65;">형사는 즉각 대응, 이혼은 손익 분석, 회생은 후기 검증 순의 탐색 심리가 확인된다. 분야별 심리 구조가 상이한 만큼 콘텐츠 및 광고 메시지의 차별화된 설계가 요구된다.</div>
+      </div>
+      <div style="background:var(--cream);border-radius:2mm;padding:3.5mm;border:0.3mm solid rgba(200,168,75,0.25);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:1.5mm;">② 7단계 여정 각각 공략</div>
+        <div style="font-size:8pt;color:var(--text);line-height:1.65;">인지→탐색→영상→검증→비교→수임에 이르는 각 단계에서 자사 법인과의 접점이 확보되어야 한다. 단일 채널로는 전체 여정을 커버하기 어려운 구조다.</div>
+      </div>
+      <div style="background:var(--cream);border-radius:2mm;padding:3.5mm;border:0.3mm solid rgba(200,168,75,0.25);">
+        <div style="font-size:7pt;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:1.5mm;">③ 검색 + GEO 동시 공략</div>
+        <div style="font-size:8pt;color:var(--text);line-height:1.65;">검색광고 단독으로는 생성형 AI 추천 환경에 대응하기 어렵다. 검색광고 최적화와 GEO를 병행 운영할 때 AI 시대의 수임 경쟁력이 유지된다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 유튜브 챕터 시작 -->
+  <div style="background:var(--navy);border-radius:2mm;padding:3.5mm 5mm;margin:3mm 0;display:flex;align-items:center;gap:4mm;">
+    <div style="font-size:20pt;color:var(--gold);">▶</div>
+    <div>
+      <div style="font-size:7pt;color:var(--gold);letter-spacing:2px;margin-bottom:1mm;">CHAPTER 03</div>
+      <div style="font-size:11pt;font-weight:700;color:#fff;">유튜브 — 법무법인 온라인 사무소 전략</div>
+    </div>
+  </div>
+
+  <div class="insight-card">
+    <div class="ic-label">핵심 메시지</div>
+    <div class="ic-title">유튜브는 홍보 채널이 아니라 법무법인의 온라인 사무소다</div>
+    <div class="ic-body">유튜브는 단순 홍보 채널을 넘어 법무법인의 온라인 사무소로 기능하는 단계에 접어들었다. 예비 의뢰인이 법무법인 탐색 과정에서 유튜브를 활용하는 행동 패턴이 데이터로 확인된 만큼, <strong>예비 의뢰인의 불안을 확신으로, 궁금증을 해결책으로 전환</strong>하는 콘텐츠 전략이 수임 연결의 핵심 원리로 작용한다.</div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="num">88<span>%</span></div>
+      <div class="desc">세미나 참석 법무법인 중<br>유튜브 채널 보유율</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">85<span>%</span></div>
+      <div class="desc">광고비가 검색 등<br>텍스트 광고에 집중</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">15<span>%</span></div>
+      <div class="desc">유튜브 영상 광고에<br>투입되는 광고비</div>
+    </div>
+  </div>
+
+  <div class="highlight"><strong>시사점:</strong> 채널은 있지만 광고는 소수만 집행하고 있다. 아직은 선점 효과가 확실한 유튜브 영상 광고로 대체 불가능한 전문성을 잠재 고객에게 알려야 한다.</div>
+
+  <div class="pg-num">5</div>
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+</div>
+
+<!-- ══════════ PAGE 6 — Ch3 콘텐츠 4유형 ══════════ -->
+<div class="page">
+  <div class="page-chapter-bar">
+    <span class="ch-num">Chapter 03</span>
+    <span class="ch-title">유튜브 — 콘텐츠 4유형 & 분야별 전략 &nbsp;·&nbsp; 발표: 구글 조혜원</span>
+  </div>
+
+  <div class="section-title">법률 채널에서 통하는 4가지 콘텐츠 유형</div>
+  <div class="section-lead">유튜브 구독자 중 법률 서비스 잠재 고객은 먼저 텍스트로 정보를 확인하고, 유튜브에서 최종 신뢰를 검증한다. 이 2단계 검증 과정에서 어떤 콘텐츠가 결정적 역할을 하는지 분야별로 살펴본다.</div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>콘텐츠 4유형 — 특성과 역할</div>
+    <div class="ct-grid">
+      <div class="ct-card">
+        <div class="ct-icon" style="font-size:11pt;color:var(--navy);font-weight:700;">01</div>
+        <div class="ct-name">① 이슈형</div>
+        <div class="ct-desc">대중적 관심이 집중된 시사 이슈에 법률 전문가 관점의 해석을 부가하는 방식으로, 불특정 다수와의 채널 접점 확보에 효과적이다.</div>
+        <div class="ct-goal">역할: 불특정 다수 접점 확보</div>
+      </div>
+      <div class="ct-card">
+        <div class="ct-icon" style="font-size:11pt;color:var(--navy);font-weight:700;">02</div>
+        <div class="ct-name">② 정보 전달형</div>
+        <div class="ct-desc">구체적 법적 위기 상황에 대한 해결 방향 및 실무 기반 법률 지식을 전달하는 형식이다. 검색 의도에 부합하는 정확한 정보 제공을 통해 전문성을 인식시킨다.</div>
+        <div class="ct-goal">역할: 전문성 인식 · 검색 충족</div>
+      </div>
+      <div class="ct-card">
+        <div class="ct-icon" style="font-size:11pt;color:var(--navy);font-weight:700;">03</div>
+        <div class="ct-name">③ 사례형 (S형)</div>
+        <div class="ct-desc">의뢰인의 초기 막막함에서 돌파 전략·결과에 이르는 전체 서사를 구성하는 형식이다. 유사 상황의 시청자가 자신을 투영하여 확신과 수임 의지를 형성하는 효과가 있다.</div>
+        <div class="ct-goal">역할: 감정적 확신 · 수임 의지</div>
+      </div>
+      <div class="ct-card">
+        <div class="ct-icon" style="font-size:11pt;color:var(--navy);font-weight:700;">04</div>
+        <div class="ct-name">④ 위기 조성형</div>
+        <div class="ct-desc">실증적 데이터 및 실패 사례에 근거한 전문가 경고 형식으로, 의사결정을 지연하는 예비 의뢰인에게 즉각적 행동을 촉구하는 트리거 역할을 한다.</div>
+        <div class="ct-goal">역할: 즉각적 상담 행동 트리거</div>
+      </div>
+    </div>
+    <div class="highlight" style="margin-top:0"><strong>구글의 설명:</strong> 네 가지 콘텐츠 유형을 균형 있게 갖출 때, 예비 의뢰인의 정보 탐색부터 신뢰 형성, 최종 수임 결정까지의 전 여정에 걸쳐 자사 법인의 접점이 완성된다.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>분야별 콘텐츠 우선순위</div>
+    <table class="tbl" style="table-layout:fixed">
+      <colgroup><col style="width:13%"><col style="width:22%"><col style="width:16%"><col style="width:49%"></colgroup>
+      <thead>
+        <tr><th>수임 분야</th><th>의뢰인 심리</th><th>주력 콘텐츠</th><th>콘텐츠 방향</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>이혼·가정법</strong></td>
+          <td>수개월~수년에 걸친 숙고 과정을 거치는 특성상, 탐색 기간 내 유튜브를 통해 심리적 준비를 진행하는 패턴이 확인된다.</td>
+          <td><span class="tag" style="display:inline-block;margin-bottom:1mm;">정보 전달형</span><br><span class="tag gold" style="display:inline-block;">사례형</span></td>
+          <td>단순 법리 해설을 넘어, 유사 상황에서의 해결 서사를 중심으로 구성한다. 콘텐츠 축적이 늘어날수록 장기 탐색 기간 동안의 의뢰인 신뢰 형성 효과가 높아진다.</td>
+        </tr>
+        <tr>
+          <td><strong>형사·성범죄</strong></td>
+          <td>극도의 불안감과 시급성을 동반한 상태에서 검색이 이루어진다.</td>
+          <td><span class="tag" style="display:inline-block;margin-bottom:1mm;">정보 전달형</span><br><span class="tag red" style="display:inline-block;">위기 조성형</span></td>
+          <td>명확한 법적 대응 지침 제공과 골든타임 중요성 강조를 핵심으로 구성한다. 시급한 상황일수록 유튜브를 통해 전문가를 사전 검증한 후 상담을 신청하는 경향이 있다.</td>
+        </tr>
+        <tr>
+          <td><strong>개인회생·파산</strong></td>
+          <td>채무 독촉에 대한 두려움과 심리적 절망감을 동반한 상태에서 탐색이 이루어진다.</td>
+          <td><span class="tag gold" style="display:inline-block;margin-bottom:1mm;">사례형</span><br><span class="tag red" style="display:inline-block;">위기 조성형</span></td>
+          <td>성공 서사를 통한 희망 제공과 골든타임 경고를 병행하는 투트랙 전략이 효과적이다. 유튜브 채널이 확보되어 있지 않으면 이 두 가지 메시지를 전달할 수단 자체가 존재하지 않는다.</td>
+        </tr>
+        <tr>
+          <td><strong>부동산·민사</strong></td>
+          <td>상당 규모의 재산이 결부된 사안으로, 감정적 소구보다 실질적 정보 제공을 선호하는 이성적 의사결정 패턴이 나타난다.</td>
+          <td><span class="tag" style="display:inline-block;margin-bottom:1mm;">정보 전달형</span><br><span class="tag" style="display:inline-block;background:#3B82C4;">이슈형</span></td>
+          <td>정보 전달형 콘텐츠가 주된 효과를 발휘한다. 사회적 이슈 발생 시 관련 콘텐츠가 채널에 선제적으로 확보되어 있을 경우, 경쟁 법인 대비 우선 노출되는 선점 효과를 확보할 수 있다.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pg-num">6</div>
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+</div>
+
+<!-- ══════════ PAGE 7 — Ch3 (2/3) ══════════ -->
+<div class="page">
+  <div class="page-chapter-bar">
+    <span class="ch-num">Chapter 03</span>
+    <span class="ch-title">유튜브 — 채널 세팅 & 광고 부스팅 &nbsp;·&nbsp; 발표: 구글 조혜원</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>채널 세팅 체크리스트</div>
+    <div class="grid-2">
+      <div>
+        <p style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:2.5mm;padding-bottom:1.5mm;border-bottom:0.3mm solid var(--gl);">기본 세팅</p>
+        <ul class="bul-list">
+          <li>로고 삽입</li>
+          <li>채널명 정확하게 입력</li>
+          <li>전문성이 보이는 헤더 이미지</li>
+          <li><strong>재생 목록과 커뮤니티 탭까지 전부 활성화</strong> — 홈·동영상·쇼츠만 켜두는 경우가 많은데, 재생 목록과 커뮤니티 탭도 반드시 함께 운영해야 한다.</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:2.5mm;padding-bottom:1.5mm;border-bottom:0.3mm solid var(--gl);">홈 화면 필수 요소</p>
+        <ul class="bul-list">
+          <li>메인 영상 고정 — 브랜딩 영상 또는 조회수 높은 영상</li>
+          <li>채널 방문자를 리드로 연결할 수 있도록 <strong>전화번호·홈페이지 문의 링크·카카오톡 문의 등 컨택 포인트 필수 포함</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="grid-2">
+      <div>
+        <p style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:2.5mm;padding-bottom:1.5mm;border-bottom:0.3mm solid var(--gl);">재생 목록</p>
+        <ul class="bul-list">
+          <li>카테고리별 구성 권장</li>
+          <li>재생 목록 내 영상 종료 후 다음 영상 자동 연결 → 채널 체류시간 증가</li>
+          <li>체류 시간이 길수록 유튜브 시스템이 해당 유저와 채널의 연관성을 높게 판단 → 오가닉 노출이 증가하는 선순환</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:2.5mm;padding-bottom:1.5mm;border-bottom:0.3mm solid var(--gl);">커뮤니티 탭</p>
+        <ul class="bul-list">
+          <li>푸시 알림 채널로 활용 권장</li>
+          <li>문의 링크·카카오톡·전화번호 등 <strong>CTA 반드시 포함</strong></li>
+          <li>영상으로 만들기 어려운 마이크로 성공 사례 공유</li>
+          <li>명절 인사 등 장기 라포 형성 활용</li>
+          <li>포스팅 시 이미지 반드시 첨부 — 부피감 확보</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>유튜브 광고 부스팅 — 3가지 방식</div>
+    <div class="card-body">
+      <p style="font-size:8.5pt;margin-bottom:3mm;">오가닉 알고리즘 노출만을 수동적으로 대기하는 전략은 법률 시장의 경쟁 속도를 고려할 때 기회비용이 크다. 광고를 통해 잠재 의뢰인에게 선제적으로 접근하는 것이 효과적인 채널 부스팅 방식으로 평가된다.</p>
+      <div class="grid-3">
+        <div style="background:var(--cream);border-radius:2mm;padding:3.5mm;border:0.3mm solid rgba(200,168,75,0.25);">
+          <div style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:1.5mm;">도달 범위 최대화 광고</div>
+          <div style="font-size:8pt;color:var(--text);line-height:1.65;">지역과 상황을 타겟팅해 최대한 많은 잠재 의뢰인에게 노출시키는 광고.</div>
+          <div style="margin-top:2mm;font-size:7.5pt;color:var(--gold);font-weight:600;">적용 상황: 법인 인지도 부족</div>
+        </div>
+        <div style="background:var(--cream);border-radius:2mm;padding:3.5mm;border:0.3mm solid rgba(200,168,75,0.25);">
+          <div style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:1.5mm;">조회수 최대화 광고</div>
+          <div style="font-size:8pt;color:var(--text);line-height:1.65;">단순 노출이 아닌 실제 시청 시간으로 기록되는 조회수 확보. 초기 반응 부스팅 → 알고리즘 오가닉 확산 선순환.</div>
+          <div style="margin-top:2mm;font-size:7.5pt;color:var(--gold);font-weight:600;">적용 상황: 조회수 미달</div>
+        </div>
+        <div style="background:var(--cream);border-radius:2mm;padding:3.5mm;border:0.3mm solid rgba(200,168,75,0.25);">
+          <div style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:1.5mm;">구독자 확보 캠페인</div>
+          <div style="font-size:8pt;color:var(--text);line-height:1.65;">구독자 수는 법무법인의 신뢰도 지표다. 구독자 1,300명 채널과 13만 명 채널의 첫인상은 다를 수밖에 없다.</div>
+          <div style="margin-top:2mm;font-size:7.5pt;color:var(--gold);font-weight:600;">적용 상황: 채널 규모 부족</div>
+        </div>
+      </div>
+      <div class="note-box" style="margin-top:0">
+        <strong>알고리즘 활용 원리:</strong> 광고를 통해 영상을 시청한 유저의 계정에 시청 기록이 남는다. 유튜브 시스템은 이 연결성을 기반으로 해당 유저의 알고리즘에 우리 채널을 오가닉으로 추가 노출한다.
+      </div>
+    </div>
+  </div>
+
+  <div class="term-box">
+    <div class="term-icon">—</div>
+    <div>
+      <div class="term-title">오가닉 노출 <span>Organic Reach</span></div>
+      <div class="term-desc">광고비를 쓰지 않아도 유튜브 알고리즘이 자동으로 추천해주는 노출. 시청 시간이 길고 반응(좋아요·댓글·공유)이 많을수록 알고리즘이 채널을 더 적극적으로 추천한다. 광고는 이 오가닉 노출의 불씨를 만들어주는 역할이다.</div>
+    </div>
+  </div>
+
+  <div class="action-box">
+    <div class="ab-label">유튜브 전략의 최종 목표</div>
+    <div class="ab-title">수임 → 리드 유입 → 콘텐츠 → 채널 성장의 선순환 구조</div>
+    <ul>
+      <li>유튜브 채널 운영의 궁극적 목표는 구독자 확보나 인지도 제고가 아닌 수임 전환에 있다.</li>
+      <li>영상 콘텐츠 업로드 → 채널 세팅 완성 → 광고 홍보 → 리드 유입 → 성공 사례 기반 콘텐츠 제작 → 채널 성장으로 이어지는 선순환 구조의 구축이 전략적 목표다.</li>
+      <li>콘텐츠 제작, 채널 세팅, 광고 부스팅 세 요소가 통합적으로 운영될 때 이 선순환 구조가 완성된다.</li>
+    </ul>
+  </div>
+
+  <div class="pg-num">7</div>
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+</div>
+
+<!-- ══════════ PAGE 8 — Ch4 ══════════ -->
+<div class="page">
+  <div class="page-chapter-bar">
+    <span class="ch-num">Chapter 04</span>
+    <span class="ch-title">구글 광고 ABCD 프레임워크 &nbsp;·&nbsp; 발표: 구글 김영훈 · 김소연</span>
+  </div>
+
+  <div class="section-title">신뢰를 의뢰로 연결하는 시스템</div>
+  <div class="section-lead">구글 지면에서 전환 기회를 최대한 확보하기 위한 법률 광고 운영 프레임워크.</div>
+
+  <div class="insight-card">
+    <div class="ic-label">핵심 메시지</div>
+    <div class="ic-title">같은 예산·소재로도 ABCD 구조에 따라 성과가 전혀 달라진다</div>
+    <div class="ic-body">디지털 채널을 통해 축적된 신뢰와 인지도를 수임으로 전환하기 위한 운영 시스템이 요구된다. ABCD 프레임워크는 구글 매체의 광범위한 지면에 분산된 전환 기회를 체계적으로 포착하고 확보하기 위한 구조다. <strong>동일한 예산과 소재를 활용하더라도 캠페인 구조 설계에 따라 성과가 상이하게 나타날 수 있다.</strong></div>
+  </div>
+
+  <div class="term-box">
+    <div class="term-icon">—</div>
+    <div>
+      <div class="term-title">전환 (Conversion)</div>
+      <div class="term-desc">광고를 본 사람이 우리가 원하는 행동(상담 신청, 전화 문의, 카카오톡 연결 등)을 완료하는 것. 단순히 광고를 봤거나 클릭했다고 전환이 아니며, 실제로 상담 신청까지 완료해야 전환으로 집계된다. 광고 성과를 측정하는 가장 핵심 지표다.</div>
+    </div>
+  </div>
+
+  <div class="term-box">
+    <div class="term-icon">—</div>
+    <div>
+      <div class="term-title">AI 자동 입찰 <span>Smart Bidding</span></div>
+      <div class="term-desc">구글 광고는 매 검색마다 수백만 건의 경쟁 입찰이 동시에 일어난다. AI 자동 입찰은 전환 가능성이 높은 유저에게는 더 높은 금액을, 낮은 유저에게는 낮은 금액을 자동으로 조절해 같은 예산으로 더 많은 전환을 만들어낸다.</div>
+    </div>
+  </div>
+
+  <div class="abcd-grid">
+    <div class="abcd-card">
+      <div class="abcd-header">
+        <div class="abcd-letter">A</div>
+        <div class="abcd-header-text">
+          <div class="en">All-In Placement</div>
+          <div class="ko">모든 지면에 진출</div>
+        </div>
+      </div>
+      <div class="abcd-body">
+        <ul>
+          <li>예비 의뢰인의 정보 탐색 경로가 다양화·복잡화됨에 따라, 단일 지면에 의존하는 광고 전략으로는 전환 기회를 충분히 확보하기 어렵다.</li>
+          <li>검색 지면 — 명확한 구매 의도를 가진 유저 포착</li>
+          <li>유튜브 — 콘텐츠를 관심 있게 보는 유저에게 노출</li>
+          <li>GDN 디스플레이 — 예상치 못한 순간에 서비스를 발견하게 하는 지면</li>
+          <li>Gmail·구글 지도 등 복잡한 여정 전체를 커버</li>
+          <li>P-Max + Search 또는 Demand Gen + Search 조합 권장. 조합 시 효과 측정 타이트 리포트를 구글 매니저에게 요청 가능.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="abcd-card">
+      <div class="abcd-header">
+        <div class="abcd-letter">B</div>
+        <div class="abcd-header-text">
+          <div class="en">Bidding Strategy</div>
+          <div class="ko">입찰 전략 최적화</div>
+        </div>
+      </div>
+      <div class="abcd-body">
+        <ul>
+          <li>머신이 학습할 수 있는 목표를 명확하게 설정해야 한다. 전환 설정이 머신에게 올바른 목표를 알려주는 작업이다.</li>
+          <li>노출 위치·클릭이 목표가 되어선 안 된다. 최종 목표는 상담 전환이다.</li>
+          <li>수동 입찰 → 자동화 입찰(전환수 최대화) 전환 권장</li>
+          <li>예산 분산 금지. 단일 구조로 통합해 AI 학습 데이터를 집중 축적. 같은 100만원을 30만씩 나눠 쓰는 것과 단일 운용은 같은 예산으로 다른 성과를 만든다.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="abcd-card">
+      <div class="abcd-header">
+        <div class="abcd-letter">C</div>
+        <div class="abcd-header-text">
+          <div class="en">Customer Targeting</div>
+          <div class="ko">진성 고객 타겟팅</div>
+        </div>
+      </div>
+      <div class="abcd-body">
+        <ul>
+          <li>구글은 누가 변호사의 도움을 찾고 있는지를 데이터로 파악하고 있다. 이 데이터를 활용해 진성 의뢰인의 시그널을 포착해야 한다.</li>
+          <li>구글 에즈 통계 탭 — 전환 세그먼트 분석</li>
+          <li>인사이트 파인더 — 작년부터 전체 공개된 무료 도구. 에즈 계정만 있으면 접근 가능. 잠재 의뢰인의 공통점 파악.</li>
+          <li>관심사·구매 의도·맞춤 세그먼트 조합 타겟팅</li>
+          <li>타겟팅 최적화 기능 — 설정 타겟 밖에서도 전환 시그널이 보이는 유저를 자동 포획.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="abcd-card">
+      <div class="abcd-header">
+        <div class="abcd-letter">D</div>
+        <div class="abcd-header-text">
+          <div class="en">Decision Moment</div>
+          <div class="ko">결정 순간 망설임 제거</div>
+        </div>
+      </div>
+      <div class="abcd-body">
+        <ul>
+          <li>진성 유저를 찾았어도 최종 결정을 이끌어내는 소재가 필요하다. 광고들 사이에서 한 끝 차이로 우리를 선택하게 만드는 것이 D의 역할이다.</li>
+          <li>AI Max(AI 최대화) — 검색어의 맥락을 AI가 읽어 의도가 포착되면 자동 노출.</li>
+          <li>자동 소재 생성 — 유저 의도에 맞게 헤드라인 개인화.</li>
+          <li>랜딩 페이지 자동 선택 — 유저 의도에 따라 적합한 랜딩 페이지로 자동 연결.</li>
+          <li>지면에 꼭 맞는 소재일수록 더 유리한 입찰가·우선순위로 노출된다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:3.5mm">
+    <div class="term-box" style="margin:0">
+      <div class="term-icon">—</div>
+      <div>
+        <div class="term-title">P-Max <span>Performance Max · 퍼포먼스 맥스</span></div>
+        <div class="term-desc">구글의 모든 지면(검색·유튜브·지메일·지도·디스플레이)을 하나의 캠페인으로 운영하는 광고 상품. AI가 자동으로 어느 지면에 얼마를 쓸지 최적화해준다.</div>
+      </div>
+    </div>
+    <div class="term-box" style="margin:0">
+      <div class="term-icon">—</div>
+      <div>
+        <div class="term-title">AI Max <span>검색 캠페인 확장 기능</span></div>
+        <div class="term-desc">등록한 키워드가 아니어도 검색어의 문맥과 의도를 AI가 파악해 자동 노출. 예: "이혼" 키워드 없이도 "결혼 전 증여받은 아파트 재산 분할 기준" 검색에 이혼 변호사 광고 노출 가능.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="term-box" style="margin:0">
+      <div class="term-icon">—</div>
+      <div>
+        <div class="term-title">GDN <span>Google Display Network</span></div>
+        <div class="term-desc">구글과 제휴된 수백만 웹사이트·앱에 이미지·배너 광고를 노출하는 지면. 법률 기사를 읽고 있는 사람에게 법무법인 배너가 뜨는 방식. 직접 검색하지 않은 사람에게도 노출 가능.</div>
+      </div>
+    </div>
+    <div class="term-box" style="margin:0">
+      <div class="term-icon">—</div>
+      <div>
+        <div class="term-title">Demand Gen <span>디맨드젠 · 수요 창출 캠페인</span></div>
+        <div class="term-desc">아직 우리 법인을 모르는 잠재 의뢰인에게 먼저 다가가 관심을 만드는 광고. 유튜브·Discover·지메일에 주로 노출. 검색 의도가 없는 사람에게 접점을 먼저 만드는 것이 목적.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pg-num">9</div>
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+</div>
+
+<!-- ══════════ PAGE 10 — Ch5 ══════════ -->
+<div class="page">
+  <div class="page-chapter-bar">
+    <span class="ch-num">Chapter 05</span>
+    <span class="ch-title">리드 퀄리티 개선 전략 &nbsp;·&nbsp; 발표: 구글 임수연</span>
+  </div>
+
+  <div class="section-title">리드 퀄리티 문제를 해결하기 전에, 그것이 진짜 문제인지 먼저 정의해야 한다</div>
+  <div class="section-lead">가장 많이 받은 질문 중 하나인 리드 퀄리티 문제를 문제 정의부터 구체적 해결책까지 단계별로 다룬 세션이다.</div>
+
+  <div class="insight-card">
+    <div class="ic-label">핵심 메시지</div>
+    <div class="ic-title">리드 퀄리티 문제를 정의하기 위한 3가지 판단 기준</div>
+    <div class="ic-body">리드 퀄리티 대응에 과도한 리소스를 할당할 경우, 진성 리드 확보 기회를 놓칠 수 있다. 다음 세 가지 기준에 모두 해당할 때 비로소 우선 해결 과제로 정의하는 것이 적절하다. ① <strong>사업 영역과 전혀 무관한 리드인가</strong>, ② <strong>전환 가능성이 구조적으로 부재한 리드인가</strong>, ③ <strong>영업 리소스 낭비가 운영상 심각한 수준에 해당하는가</strong>.</div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:4mm">
+    <div class="term-box" style="margin:0">
+      <div class="term-icon">—</div>
+      <div>
+        <div class="term-title">리드 (Lead) <span>잠재 고객 문의</span></div>
+        <div class="term-desc">광고를 보고 상담 신청·전화·카카오톡 연락 등으로 들어온 잠재 의뢰인. 수임 가능성이 높은 "진성 리드"와 단순 궁금증의 "저질 리드"로 구분된다.</div>
+      </div>
+    </div>
+    <div class="term-box" style="margin:0">
+      <div class="term-icon">—</div>
+      <div>
+        <div class="term-title">UTM <span>Urchin Tracking Module</span></div>
+        <div class="term-desc">어떤 광고·채널을 통해 홈페이지에 방문했는지 추적하는 URL 파라미터. 의뢰인이 여러 경로를 거치면 정확한 추적이 어렵다는 구조적 한계가 있다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>해결책 ① — 지면 정교화</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div>
+          <p style="font-size:8.5pt;font-weight:700;color:var(--red);margin-bottom:2mm;">현황 — 빈번히 관찰되는 운영 방식</p>
+          <ul class="bul-list">
+            <li>단일 소재로 전체 서비스를 전달하려는 방식에 의존하고 있다</li>
+            <li>경쟁 법인과 동일한 카피가 반복되어 차별화 요소가 부재하다</li>
+            <li>지면별 최적화 없이 동일 소재를 일괄 적용하고 있다</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:8.5pt;font-weight:700;color:var(--green);margin-bottom:2mm;">권장 개선 방향</p>
+          <ul class="bul-list">
+            <li>유튜브·디스커버·검색에서 단계적 노출</li>
+            <li>1단계: 우리가 무슨 서비스를 제공하는지</li>
+            <li>2단계: 왜 우리에게 상담해야 하는지</li>
+          </ul>
+        </div>
+      </div>
+      <div class="warn-box" style="margin-top:0">
+        <strong>카피 차별화 필수:</strong> 구글 검색에서 법률사무소를 검색하면 대부분의 광고가 "24시간 상담 가능", "변호사와 직접 상담"이다. 왜 우리를 선택해야 하는지, 우리가 어떤 서비스를 제공하는지를 충분히 이해할 수 있는 소재가 필요하다.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>해결책 ② — 구글 리드 폼 활용</div>
+    <div class="card-body">
+      <div class="grid-3" style="margin-bottom:0">
+        <div style="background:var(--cream);border-radius:2mm;padding:3.5mm;border:0.3mm solid rgba(200,168,75,0.25);">
+          <div style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:1.5mm;">① 무의미한 찔러보기 감소</div>
+          <div style="font-size:8pt;color:var(--text);line-height:1.6;">양식 작성 과정에서 예비 의뢰인이 자신의 상황을 재확인하게 되어, 호기심성 문의가 감소하는 효과가 있다.</div>
+        </div>
+        <div style="background:var(--cream);border-radius:2mm;padding:3.5mm;border:0.3mm solid rgba(200,168,75,0.25);">
+          <div style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:1.5mm;">② 자가 필터링 효과</div>
+          <div style="font-size:8pt;color:var(--text);line-height:1.6;">양식 작성이 요구되는 구조상 우발적·장난성 리드가 감소하며, 시급성이 높은 진성 의뢰인의 비중이 높아지는 자가 필터링 효과가 발생한다.</div>
+        </div>
+        <div style="background:var(--cream);border-radius:2mm;padding:3.5mm;border:0.3mm solid rgba(200,168,75,0.25);">
+          <div style="font-size:8.5pt;font-weight:700;color:var(--navy);margin-bottom:1.5mm;">③ 맞춤형 응대 가능</div>
+          <div style="font-size:8pt;color:var(--text);line-height:1.6;">사전에 의뢰인 상황을 파악하고 맞춤형 상담을 준비할 수 있어 수임 전환율 향상에 기여한다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>해결책 ③ — 향상된 전환 (Enhanced Conversions)</div>
+    <div class="card-body">
+      <p style="font-size:8.5pt;margin-bottom:3mm;">구글이 현재 추적할 수 있는 범위는 온라인 리드 양식 제출까지다. 실제 수임은 오프라인에서 이루어지므로, 이 오프라인 전환 데이터를 구글 에즈에 피드백해 AI 학습을 고도화하는 기능이다.</p>
+      <table class="tbl">
+        <thead>
+          <tr><th>단계</th><th>설명</th><th>효과</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>현재 구글 추적 범위</strong></td>
+            <td>페이지 방문 → 리드 양식 제출까지만 추적 가능</td>
+            <td>이 데이터만으로 타겟팅이 이루어지고 있음</td>
+          </tr>
+          <tr>
+            <td><strong>향상된 전환 추가 시</strong></td>
+            <td>유효 리드 → 실제 수임까지의 데이터를 구글에 피드백 (이메일·전화번호 리스트 업로드)</td>
+            <td>전환 측정 고도화 + AI가 "진짜 수임된 고객" 패턴 학습</td>
+          </tr>
+          <tr>
+            <td><strong>구글 제시 성과</strong></td>
+            <td>유튜브 광고 전환율 <strong>+22%</strong>, 캠페인 전반 전환 <strong>+10%</strong> 향상 사례</td>
+            <td>타겟팅 정확도 향상에 따른 결과</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note-box" style="margin-top:3mm">
+        <strong>도입 방법:</strong> 구글 매니저에게 "향상된 전환 기능을 사용해보고 싶다"고 요청하면 기술 지원팀 미팅을 잡아준다. 이후 수임 고객의 이메일·전화번호 리스트를 정기적으로 업로드하는 방식으로 운영한다.
+      </div>
+    </div>
+  </div>
+
+  <div class="term-box">
+    <div class="term-icon">—</div>
+    <div>
+      <div class="term-title">향상된 전환 (Enhanced Conversions)</div>
+      <div class="term-desc">구글은 온라인 상담 신청까지만 추적이 가능하다. 실제 수임 고객의 연락처를 구글에 주기적으로 업로드하면 AI가 "어떤 유형의 사람이 실제로 수임까지 했는지"를 학습해 광고 효율을 높여준다. 쉽게 말해 구글에게 정답 데이터를 알려주는 것이다.</div>
+    </div>
+  </div>
+
+  <div class="pg-num">10</div>
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+</div>
+
+<!-- ══════════ PAGE 11 — Ch6 ══════════ -->
+<div class="page">
+  <div class="page-chapter-bar">
+    <span class="ch-num">Chapter 06</span>
+    <span class="ch-title">키워드 전략 — 상위 노출보다 중요한 것 &nbsp;·&nbsp; 발표: 구글 임수연</span>
+  </div>
+
+  <div class="section-title">상위 노출보다 중요한 것 — 3단계 키워드 구조 설계</div>
+  <div class="section-lead">자사 법인명 키워드의 상위 노출에 집착하는 운영 방식이 빈번히 관찰되는 가운데, 상위 노출보다 중요한 3단계 키워드 구조 설계의 본질을 다룬 세션이다.</div>
+
+  <div class="insight-card">
+    <div class="ic-label">핵심 메시지</div>
+    <div class="ic-title">법인 이름을 알고 검색하는 사람보다, 자신의 상황을 문장으로 검색하는 사람이 훨씬 많다</div>
+    <div class="ic-body">실제로 법무법인 명칭을 사전에 인지하지 못한 채 <strong>자신의 상황을 문장형으로 검색하거나 AI에 질의하는 예비 의뢰인의 비중이 높다.</strong> 상위 노출 자체보다 정보 획득 → 전문성 비교 → 결정에 이르는 3단계 키워드군이 검색 캠페인에 체계적으로 설계되어 있는지를 점검하는 것이 본질적 과제다.</div>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:4mm">
+    <div class="term-box" style="margin:0">
+      <div class="term-icon">—</div>
+      <div>
+        <div class="term-title">키워드 입찰</div>
+        <div class="term-desc">구글 검색광고는 경매 방식. 키워드에 여러 법인이 입찰하며, 입찰가 + 광고 품질 점수(관련성·클릭률)가 노출 순위를 결정한다.</div>
+      </div>
+    </div>
+    <div class="term-box" style="margin:0">
+      <div class="term-icon">—</div>
+      <div>
+        <div class="term-title">YoY <span>Year over Year</span></div>
+        <div class="term-desc">올해 수치를 작년 같은 기간과 비교한 증감률. "YoY가 좋다"는 것은 해당 키워드 검색량이 성장 추세라는 신호다.</div>
+      </div>
+    </div>
+    <div class="term-box" style="margin:0">
+      <div class="term-icon">—</div>
+      <div>
+        <div class="term-title">CPC <span>Cost Per Click</span></div>
+        <div class="term-desc">광고가 클릭될 때마다 발생하는 비용. 법률 분야는 수임 단가가 높아 CPC가 비교적 높은 업종에 속한다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>3단계 키워드 구조</div>
+    <table class="tbl">
+      <thead>
+        <tr><th>단계</th><th>의뢰인 상태</th><th>키워드 예시 (이혼)</th><th>광고 목적</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>① 정보 탐색</strong></td>
+          <td>변호사가 필요한지도 모름. 이혼 소송이 무엇인지조차 모르는 상태.</td>
+          <td>이혼 소송 절차, 이혼 소송이란, 변호사 없이 이혼 가능한지, 이혼 위자료 기준</td>
+          <td>인지·노출, 콘텐츠 랜딩</td>
+        </tr>
+        <tr>
+          <td><strong>② 전문성 비교</strong></td>
+          <td>상담하기로 결정. 왜 우리를 선택해야 하는지 비교하는 상태.</td>
+          <td>이혼 전문 변호사 추천, 이혼 승소율, 재산 분할 전문 변호사, 양육권 소송 잘 하는 곳</td>
+          <td>차별화 어필, 전문성 강조</td>
+        </tr>
+        <tr>
+          <td><strong>③ 결정</strong></td>
+          <td>당장 변호사를 선임하려는 의지가 강하고 시급성이 최고조인 상태.</td>
+          <td>이혼 소장 작성, 이혼 보정 광고 대응, 상관료 소송 증거, 양육권 소송 증거 수집</td>
+          <td>즉시 전환, 즉각 상담 CTA</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="highlight"><strong>핵심 점검 질문:</strong> 정보 획득, 전문성 비교, 결정 단계까지의 키워드들이 현재 검색 캠페인에 잘 녹아들어져 있는가. 자사와 경쟁사 이름 키워드에만 집착하고 있지는 않은지 점검해야 한다.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>분야별 키워드 특성 분석 — 구글 내부 데이터 기반</div>
+    <!-- 범례 -->
+    <div style="display:flex;gap:4mm;margin-bottom:3.5mm;align-items:center;font-size:7.5pt;color:var(--gray);">
+      <span style="font-weight:600;color:var(--navy);">3단계별 키워드 YoY 증가율</span>
+      <span style="display:flex;align-items:center;gap:1.5mm;"><span style="width:8mm;height:2.5mm;background:#3B82C4;border-radius:0.5mm;display:inline-block;"></span>정보 탐색</span>
+      <span style="display:flex;align-items:center;gap:1.5mm;"><span style="width:8mm;height:2.5mm;background:var(--gold);border-radius:0.5mm;display:inline-block;"></span>비교</span>
+      <span style="display:flex;align-items:center;gap:1.5mm;"><span style="width:8mm;height:2.5mm;background:var(--red);border-radius:0.5mm;display:inline-block;"></span>결정</span>
+    </div>
+    <table class="tbl">
+      <thead>
+        <tr><th style="width:8%">수임 분야</th><th style="width:28%">키워드 특성</th><th style="width:26%">3단계별 YoY 증가율</th><th style="width:10%">집중 단계</th><th>포인트</th></tr>
+      </thead>
+      <tbody>
+        <!-- 형사: 23-6-95 -->
+        <tr>
+          <td><strong>형사</strong></td>
+          <td>결정 단계 키워드의 YoY 성장이 압도적으로 나타난다. 법적 위기 상황의 긴박성으로 인해 정보 탐색 단계를 생략하고 즉각적으로 결정 단계로 진입하는 특성이 확인된다.</td>
+          <td>
+            <div style="display:flex;flex-direction:column;gap:1.5mm;">
+              <div style="display:flex;align-items:center;gap:2mm;">
+                <span style="font-size:6.5pt;color:var(--gray);width:12mm;flex-shrink:0;">정보탐색</span>
+                <div style="flex:1;background:var(--gl);border-radius:0.5mm;height:3.5mm;position:relative;">
+                  <div style="width:23%;height:100%;background:#3B82C4;border-radius:0.5mm;opacity:0.5;"></div>
+                </div>
+                <span style="font-size:7pt;font-weight:700;color:#3B82C4;width:8mm;text-align:right;">+23%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:2mm;">
+                <span style="font-size:6.5pt;color:var(--gray);width:12mm;flex-shrink:0;">비교</span>
+                <div style="flex:1;background:var(--gl);border-radius:0.5mm;height:3.5mm;position:relative;">
+                  <div style="width:6%;height:100%;background:var(--gold);border-radius:0.5mm;opacity:0.6;"></div>
+                </div>
+                <span style="font-size:7pt;font-weight:700;color:var(--gold);width:8mm;text-align:right;">+6%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:2mm;">
+                <span style="font-size:6.5pt;color:var(--gray);width:12mm;flex-shrink:0;">결정</span>
+                <div style="flex:1;background:var(--gl);border-radius:0.5mm;height:3.5mm;position:relative;">
+                  <div style="width:95%;height:100%;background:var(--red);border-radius:0.5mm;"></div>
+                </div>
+                <span style="font-size:7pt;font-weight:700;color:var(--red);width:8mm;text-align:right;">+95%</span>
+              </div>
+            </div>
+          </td>
+          <td><span class="tag red">결정 단계</span></td>
+          <td style="font-size:7.5pt;line-height:1.65;"><strong style="color:var(--red);">결정 단계 키워드가 전체 증가의 95%를 점유.</strong> 형사 의뢰인은 "지금 당장 어떻게 해야 하나"가 급해 정보 탐색을 거의 건너뛴다. 결정 단계 키워드(구속영장·영장실질심사 등)에 예산이 충분히 배분되어 있는지, 모바일 랜딩에서 즉시 전화/카톡 연결이 되는지가 핵심 점검 포인트다.</td>
+        </tr>
+        <!-- 이혼: 74-15-10 -->
+        <tr>
+          <td><strong>이혼</strong></td>
+          <td>탐색 기간이 길고 정보 탐색 단계 키워드 비중과 YoY 증가율 모두 높은 수준으로 확인된다.</td>
+          <td>
+            <div style="display:flex;flex-direction:column;gap:1.5mm;">
+              <div style="display:flex;align-items:center;gap:2mm;">
+                <span style="font-size:6.5pt;color:var(--gray);width:12mm;flex-shrink:0;">정보탐색</span>
+                <div style="flex:1;background:var(--gl);border-radius:0.5mm;height:3.5mm;position:relative;">
+                  <div style="width:74%;height:100%;background:#3B82C4;border-radius:0.5mm;"></div>
+                </div>
+                <span style="font-size:7pt;font-weight:700;color:#3B82C4;width:8mm;text-align:right;">+74%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:2mm;">
+                <span style="font-size:6.5pt;color:var(--gray);width:12mm;flex-shrink:0;">비교</span>
+                <div style="flex:1;background:var(--gl);border-radius:0.5mm;height:3.5mm;position:relative;">
+                  <div style="width:15%;height:100%;background:var(--gold);border-radius:0.5mm;opacity:0.6;"></div>
+                </div>
+                <span style="font-size:7pt;font-weight:700;color:var(--gold);width:8mm;text-align:right;">+15%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:2mm;">
+                <span style="font-size:6.5pt;color:var(--gray);width:12mm;flex-shrink:0;">결정</span>
+                <div style="flex:1;background:var(--gl);border-radius:0.5mm;height:3.5mm;position:relative;">
+                  <div style="width:10%;height:100%;background:var(--red);border-radius:0.5mm;opacity:0.5;"></div>
+                </div>
+                <span style="font-size:7pt;font-weight:700;color:var(--red);width:8mm;text-align:right;">+10%</span>
+              </div>
+            </div>
+          </td>
+          <td><span class="tag">정보 탐색</span></td>
+          <td style="font-size:7.5pt;line-height:1.65;">정보 탐색 단계에서의 성장이 두드러진다. 장기간의 숙고 끝에 결정하는 분야 특성상 정보 탐색형 키워드를 우선 확보하는 전략이 유효하다. 탐색 의도에 부합하는 키워드군이 캠페인 내에 충분히 구성되어 있는지 점검이 요구된다.</td>
+        </tr>
+        <!-- 개인회생: 20-66-14 -->
+        <tr>
+          <td><strong>개인회생</strong></td>
+          <td>"어디에 맡겨야 하는가"를 중심으로 한 비교 단계 키워드 비중과 YoY 증가율이 모두 높은 수준으로 확인된다.</td>
+          <td>
+            <div style="display:flex;flex-direction:column;gap:1.5mm;">
+              <div style="display:flex;align-items:center;gap:2mm;">
+                <span style="font-size:6.5pt;color:var(--gray);width:12mm;flex-shrink:0;">정보탐색</span>
+                <div style="flex:1;background:var(--gl);border-radius:0.5mm;height:3.5mm;position:relative;">
+                  <div style="width:20%;height:100%;background:#3B82C4;border-radius:0.5mm;opacity:0.5;"></div>
+                </div>
+                <span style="font-size:7pt;font-weight:700;color:#3B82C4;width:8mm;text-align:right;">+20%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:2mm;">
+                <span style="font-size:6.5pt;color:var(--gray);width:12mm;flex-shrink:0;">비교</span>
+                <div style="flex:1;background:var(--gl);border-radius:0.5mm;height:3.5mm;position:relative;">
+                  <div style="width:66%;height:100%;background:var(--gold);border-radius:0.5mm;"></div>
+                </div>
+                <span style="font-size:7pt;font-weight:700;color:var(--gold);width:8mm;text-align:right;">+66%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:2mm;">
+                <span style="font-size:6.5pt;color:var(--gray);width:12mm;flex-shrink:0;">결정</span>
+                <div style="flex:1;background:var(--gl);border-radius:0.5mm;height:3.5mm;position:relative;">
+                  <div style="width:14%;height:100%;background:var(--red);border-radius:0.5mm;opacity:0.5;"></div>
+                </div>
+                <span style="font-size:7pt;font-weight:700;color:var(--red);width:8mm;text-align:right;">+14%</span>
+              </div>
+            </div>
+          </td>
+          <td><span class="tag gold">비교 단계</span></td>
+          <td style="font-size:7.5pt;line-height:1.65;">채무 조정 조건 및 법인 선택 기준을 비교·검토하는 단계의 의뢰인이 집중적으로 성장하고 있다. 자사 법인의 비교 우위를 소구하는 키워드군 설계가 요구된다.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note-box" style="margin-top:3mm;">
+      <strong>데이터 해석:</strong> 수치는 각 수임 분야에서 정보탐색·비교·결정 단계에 해당하는 키워드군의 YoY 검색량 증가율이다. 형사는 결정(+95%)이 폭발적이므로 즉각 상담 CTA 키워드에 집중해야 하고, 이혼은 정보탐색(+74%)이 높으므로 정보성 랜딩과 콘텐츠 SEO가 핵심이다. 개인회생은 비교(+66%)가 높으므로 "왜 우리인가"를 설명하는 비교 우위 키워드 설계가 필요하다. <em>출처: 구글 내부 데이터</em>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>예산 배분 원칙</div>
+    <div class="card-body">
+      <ul class="num-list">
+        <li><div><strong>적재적소 예산 배분 확인 필수</strong><br>구글 광고는 24시간 상시 운영된다. 오전 중 예산이 소진될 경우, 오후에 해당 키워드가 검색되더라도 광고가 노출되지 않는다. 시간대별 예산 배분의 적정성을 정기적으로 점검해야 한다.</div></li>
+        <li><div><strong>결정 단계 키워드에 우선 예산 배분</strong><br>수임 전환 가능성이 가장 높은 결정 단계 키워드군에 예산이 충분히 배분되어 있는지 점검이 요구된다.</div></li>
+        <li><div><strong>구글 담당 매니저와 함께 점검</strong><br>구글 담당 매니저와 직접 소통이 가능한 경우, 키워드 커버리지 및 예산 배분의 적정성에 대한 점검을 적극적으로 요청하는 것이 가장 효율적인 개선 방법이다.</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pg-num">11</div>
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+</div>
+
+<!-- ══════════ PAGE 12 — Summary ══════════ -->
+<div class="page">
+  <div class="page-chapter-bar">
+    <span class="ch-num">Summary</span>
+    <span class="ch-title">세미나 최종 요약 — 즉시 행동 과제 & 점검 체크리스트</span>
+  </div>
+
+  <div class="section-title">세미나 핵심 요약 — 우선 점검 과제 2가지</div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>구글이 참석자에게 요청한 2가지 즉시 행동</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div style="background:var(--cream);border-radius:2.5mm;padding:4mm;border:0.3mm solid rgba(200,168,75,0.3);">
+          <div style="font-size:7pt;color:var(--gold);letter-spacing:2px;font-weight:600;margin-bottom:2mm;">ACTION 01</div>
+          <div style="font-size:10.5pt;font-weight:700;color:var(--navy);margin-bottom:2.5mm;">담당 매니저와 유튜브 전략을 수립하라</div>
+          <ul class="bul-list">
+            <li>채널 개설 후 인지도 확보가 부진한 경우 → 노출·점유율 캠페인 예산 배분을 우선 점검</li>
+            <li>일부 영상의 성과가 확인되나 채널 전문성 인식이 부족한 경우 → 구독자 캠페인을 통한 채널 공신력 확보 권장</li>
+            <li>콘텐츠 완성도는 높으나 조회수 확보가 미흡한 경우 → 조회수 최대화 캠페인을 통한 법률 콘텐츠 노출 확대 권장</li>
+          </ul>
+        </div>
+        <div style="background:var(--cream);border-radius:2.5mm;padding:4mm;border:0.3mm solid rgba(200,168,75,0.3);">
+          <div style="font-size:7pt;color:var(--gold);letter-spacing:2px;font-weight:600;margin-bottom:2mm;">ACTION 02</div>
+          <div style="font-size:10.5pt;font-weight:700;color:var(--navy);margin-bottom:2.5mm;">현재 캠페인을 ABCD 기준으로 점검하라</div>
+          <ul class="bul-list">
+            <li>A — 검색·유튜브·지메일 등 전 지면에 광고 노출이 구성되어 있는지</li>
+            <li>B — 전환수 최대화 자동화 입찰 전략이 적용되어 있는지</li>
+            <li>C — 진성 의뢰인 시그널에 기반한 타겟팅이 설계되어 있는지 (인사이트 파인더 등 활용)</li>
+            <li>D — 자사 법인을 선택해야 하는 이유를 명확히 전달하는 소재 형식과 콘텐츠 전략이 확보되어 있는지</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-box">
+    <div class="ab-label">세미나 전체 핵심 요약</div>
+    <div class="ab-title">구글이 강조한 3가지 흐름</div>
+    <ul>
+      <li><strong>검색 → AI로 확장:</strong> GEO 시대에 진입했다. 검색광고는 유지하되, AI가 우리 법인을 추천할 수 있도록 뾰족한 포지셔닝이 선행되어야 한다.</li>
+      <li><strong>유튜브는 선점 기회가 아직 있다:</strong> 88%가 채널을 보유했지만 광고는 15%만 집행한다. 채널·콘텐츠·광고 부스팅의 3박자가 갖춰지면 선순환 수임 구조를 만들 수 있다.</li>
+      <li><strong>ABCD 4단계가 모두 작동해야 한다:</strong> A(전 지면) → B(자동화 입찰) → C(진성 타겟팅) → D(소재 개인화)가 모두 작동할 때, 같은 예산으로 최대의 전환 성과가 나온다. 구글 담당 매니저에게 현황을 공유하고 함께 점검하는 것이 가장 빠른 개선 방법이다.</li>
+    </ul>
+  </div>
+
+  <!-- 구분선 -->
+  <div style="height:0.3mm;background:var(--gl);margin:6mm 0;"></div>
+
+  <!-- 제작 정보 박스 -->
+  <div style="display:flex;align-items:center;gap:5mm;background:var(--navy);border-radius:2.5mm;padding:4mm 5mm;">
+    <div style="width:1mm;height:12mm;background:var(--gold);border-radius:0.5mm;flex-shrink:0;"></div>
+    <div>
+      <div style="font-size:7pt;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:1.5mm;">Report Produced by</div>
+      <div style="font-size:12pt;font-weight:700;color:#fff;letter-spacing:0.5px;">로케팅 김래균</div>
+    </div>
+    <div style="margin-left:auto;text-align:right;">
+      <div style="font-size:7.5pt;color:rgba(255,255,255,0.55);line-height:1.7;">발표 · 구글 김영훈 · 조혜원 · 김소연 · 임수연</div>
+      <div style="font-size:7.5pt;color:rgba(255,255,255,0.55);">Google Korea 주최 세미나 발표 내용 기반</div>
+    </div>
+  </div>
+
+  <div class="pg-num">12</div>
+  <div class="pg-footer">구글 법률광고 세미나 인사이트 보고서 · 로케팅 김래균</div>
+</div>
+
+</body>
+</html>
